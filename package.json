@@ -1,0 +1,21 @@
+{
+  "name": "js-slack-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@jest/globals": "^28.1.1",
+    "@slack/bolt": "^3.11.1",
+    "jest": "^28.1.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.18.2",
+    "supertest": "^6.2.3"
+  }
+}
