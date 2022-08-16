@@ -12,10 +12,16 @@
   "dependencies": {
     "@jest/globals": "^28.1.1",
     "@slack/bolt": "^3.11.1",
-    "jest": "^28.1.1"
+    "chromedriver": "^104.0.0",
+    "jest": "^28.1.1",
+    "node-fetch": "^3.2.6",
+    "selenium-webdriver": "^4.4.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.18.2",
+    "diff": "^5.1.0",
+    "excel4node": "^1.7.2",
+    "node-wget": "^0.4.3",
     "supertest": "^6.2.3"
   }
 }
