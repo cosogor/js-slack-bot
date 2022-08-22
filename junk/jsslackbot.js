@@ -21,67 +21,6 @@ const app = new App({
 });
 
 
-// Send message
-async function sendMessage(OAUTH_TOKEN, CHANNEL, message) {
-    let CHANNEL_ID = await findChannel(CHANNEL);
-    const result = await app.client.chat.postMessage({
-        token: OAUTH_TOKEN,
-        channel: CHANNEL_ID,
-        text: message
-    });
-    console.log(result)
-};
-
-// Find user ID using the conversations.list method
-async function findUser(userName) {
-    try {
-        // Call the conversations.list method using the built-in WebClient
-        const result = await app.client.users.list({
-            // The token you used to initialize your app
-            token: OAUTH_TOKEN
-        });
-
-        for (const member of result.members) {
-            if (member.name === userName) {
-                let userId = member.id;
-
-                // Print result
-                console.log("Found user ID: " + userId);
-                // Break from for loop
-                return userId;
-                //break;
-            }
-        }
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-
-// Find conversation ID using the conversations.list method
-async function findChannel(channelName) {
-    try {
-        // Call the conversations.list method using the built-in WebClient
-        const result = await app.client.conversations.list({
-            // The token you used to initialize your app
-            token: OAUTH_TOKEN
-        });
-
-        for (const channel of result.channels) {
-            if (channel.name === channelName) {
-                let channelId = channel.id;
-
-                // Print result
-                console.log("Found channel ID: " + channelId);
-                // Break from for loop
-                return channelId;
-                // break;
-            }
-        }
-    } catch (error) {
-        console.error(error);
-    }
-}
 
 
 // Send message
