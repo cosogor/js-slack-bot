@@ -1,8 +1,8 @@
 const { App } = require('@slack/bolt')
-let OAUTH_TOKEN = 'xoxb-3645648434194-3631173771815-wTmB4swywuLvpAR9YmmXilnr1'
+let OAUTH_TOKEN = process.env.OAUTH_TOKEN
+let SECRET = '16064fcda0b040deab5358c70c1e7f9e'
+
 let CHANNEL = 'api-monitor'
-// let CHANNEL_ID = 'C03JZKMAEPL';
-let SECRET = '26064fcda0b040deab5358c70c1e7f9e'
 
 const app = new App({
   token: OAUTH_TOKEN,

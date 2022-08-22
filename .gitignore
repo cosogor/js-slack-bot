@@ -8,6 +8,7 @@
 .yarn
 .vs
 
+settings.js
 # testing
 /coverage
 
