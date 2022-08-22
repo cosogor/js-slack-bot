@@ -1,5 +1,6 @@
 const { App } = require('@slack/bolt')
-let OAUTH_TOKEN = process.env.OAUTH_TOKEN
+let OAUTH_TOKEN = ''
+OAUTH_TOKEN = process.env.OAUTH_TOKEN
 let SECRET = '16064fcda0b040deab5358c70c1e7f9e'
 
 let CHANNEL = 'api-monitor'
