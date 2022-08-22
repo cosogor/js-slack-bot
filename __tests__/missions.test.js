@@ -284,7 +284,7 @@ async function getNFTJson(baseUrl) {
     return false
   }
   let statusCodeMsg = response.statusCode + '\tEST: ' + statusCode
-  if (response.statusCode !== statusCode) {
+  if (statusCode !== response.statusCode) {
     //server error case
     statusCodeMsg = statusCodeMsg + ' ERROR!!!'
     console.log(statusCodeMsg)
@@ -310,7 +310,7 @@ async function getMissionNftImage(baseUrl, dirName, filename) {
     return false
   }
   let statusCodeMsg = response.statusCode + '\tEST: ' + statusCode
-  if (response.statusCode != statusCode) {
+  if (statusCode != response.statusCode) {
     //server error case
     statusCodeMsg = statusCodeMsg + ' ERROR!!!'
     console.log(statusCodeMsg)
