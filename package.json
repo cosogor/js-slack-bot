@@ -1,7 +1,7 @@
-"engines": {
-"node": "16.13.x"
-},
 {
+  "engines": {
+    "node": "16.13.x"
+  },
   "name": "js-slack-bot",
   "version": "1.0.0",
   "description": "",
