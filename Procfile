@@ -1,2 +1,2 @@
-web: npm test
+web: node missions_test.js
 clock: jest
