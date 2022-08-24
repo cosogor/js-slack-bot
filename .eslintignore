@@ -3,3 +3,4 @@
 **/.next/*
 dist
 next.config.js
+*.js
