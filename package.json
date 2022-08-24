@@ -5,7 +5,7 @@
   "name": "js-slack-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "missions_test.js",
   "scripts": {
     "test": "jest"
   },
@@ -17,14 +17,11 @@
     "@slack/bolt": "^3.11.1",
     "chromedriver": "^104.0.0",
     "jest": "^28.1.1",
-    "node-fetch": "^3.2.6",
     "selenium-webdriver": "^4.4.0"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.18.2",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
-    "diff": "^5.1.0",
     "eslint": "^7.29.0",
     "eslint-config-airbnb-typescript": "^12.3.1",
     "eslint-config-prettier": "^8.3.0",
@@ -36,7 +33,6 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "excel4node": "^1.7.2",
-    "node-wget": "^0.4.3",
     "prettier": "2.7.1",
     "supertest": "^6.2.3",
     "typescript": "^4.7.4"

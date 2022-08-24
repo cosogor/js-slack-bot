@@ -184,10 +184,7 @@ function assertFilesEqual(file1, file2, mission) {
   let data1 = fs.readFileSync(file1).toString('hex')
   let data2 = fs.readFileSync(file2).toString('hex')
   if (data1 !== data2) {
-    let fileDiff = require('diff')
-    let difference = fileDiff.diffChars(data1, data2)
     console.log(data1 + ' !==\n' + data2)
-    console.log(difference)
     console.log('Mission NOK: ' + mission)
     errors++
   } else {
