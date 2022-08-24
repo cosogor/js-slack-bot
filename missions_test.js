@@ -4,7 +4,7 @@
 // https://ipfs.io/ipfs/QmWuzETbQwb43kibxTZEUrTbiH4inGzSN9ECBtN16XnbRf
 //     image in JSON:
 // https://ipfs.io/ipfs/QmaQhWW5CQ2Zau8AwoZLNGFV7mDg1tzUQJ5Mup59jiTd1X
-
+console.log('TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 const request = require('supertest')
 const fs = require('fs')
 const path = require('path')
