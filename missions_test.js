@@ -226,7 +226,7 @@ async function getMissionNftImage(baseUrl, dir, filename) {
   let statusCode = 200
   const response = await request(baseUrl).get('')
   let statusCodeMsg = response.statusCode + '\tEST: ' + statusCode
-  if (response.statusCode != statusCode) {
+  if (statusCode != response.statusCode) {
     //ERROR
     statusCodeMsg = statusCodeMsg + ' ERROR!!!'
     console.log(statusCodeMsg)
@@ -251,7 +251,7 @@ async function validateMissionsXLSCards(missionsXlsArray) {
     console.log('Checking MissionTitle: ' + xlsArrayElement['MissionTitle'])
     let imageUrl = await getImageUrlFromMissionJson(xlsArrayElement['NFTJSONLink'])
     mkdir('Missions/' + xlsArrayElement['MissionTitle'])
-    let result = await getMissionNftImage(
+    await getMissionNftImage(
       imageUrl,
       missionsDir + '/' + xlsArrayElement['MissionTitle'],
       xlsArrayElement['NFTImageHash']
