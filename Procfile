@@ -1,1 +1,1 @@
-bot: jest
+clock: jest
