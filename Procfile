@@ -1,1 +1,1 @@
-web: jest
+bot: jest
