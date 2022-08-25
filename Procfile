@@ -1,1 +1,1 @@
-web: node missions_test.js
+web: jest
