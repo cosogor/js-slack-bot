@@ -1,10 +1,10 @@
 {
-  "engines": {
-    "node": "16.x"
-  },
   "name": "js-slack-bot",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "16.x"
+  },
   "main": "missions_test.js",
   "scripts": {
     "start": "node jest",
