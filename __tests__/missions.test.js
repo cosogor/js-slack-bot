@@ -334,11 +334,11 @@ test('Validate Missions Parameters', async () => {
   await sendMessage('Validate Missions Parameters TEST FINISHED. ERRORS: ' + errors)
 })
 
-test('Validate Missions NFT', async () => {
-  await sendMessage('Validate Missions NFT TEST STARTED.')
-  let missionsArray = parseXls(missionsTable)
-  await validateMissionsXLSCards(missionsArray)
-  console.log('ERRORS: ' + errors)
-  await sendMessage('Validate Missions NFT TEST FINISHED. ERRORS: ' + errors)
-  expect(errors).toBe(0)
-})
+// test('Validate Missions NFT', async () => {
+//   await sendMessage('Validate Missions NFT TEST STARTED.')
+//   let missionsArray = parseXls(missionsTable)
+//   await validateMissionsXLSCards(missionsArray)
+//   console.log('ERRORS: ' + errors)
+//   await sendMessage('Validate Missions NFT TEST FINISHED. ERRORS: ' + errors)
+//   expect(errors).toBe(0)
+// })
