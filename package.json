@@ -10,7 +10,6 @@
     "start": "node jest",
     "test": "jest"
   },
-  "author": "",
   "dependencies": {
     "@babel/preset-env": "^7.18.10",
     "@jest/globals": "^28.1.1",
