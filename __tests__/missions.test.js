@@ -275,7 +275,7 @@ async function getNFTJson(baseUrl) {
   let statusCode = 200
   let response
 
-  sleep(500) //delay for avoid IPFS ban
+  // sleep(500) //delay for avoid IPFS ban
   try {
     response = await request(baseUrl).get('')
   } catch (e) {
@@ -301,7 +301,7 @@ async function getMissionNftImage(baseUrl, dirName, filename) {
   let statusCode = 200
   let response
 
-  sleep(1000) //delay for avoid IPFS ban
+  // sleep(1000) //delay for avoid IPFS ban
   try {
     response = await request(baseUrl).get('')
   } catch (e) {

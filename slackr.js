@@ -1,9 +1,11 @@
 const { App } = require('@slack/bolt')
 let OAUTH_TOKEN = ''
 OAUTH_TOKEN = process.env.OAUTH_TOKEN
-let SECRET = '16064fcda0b040deab5358c70c1e7f9e'
 
-let CHANNEL = 'api-monitor'
+// let SECRET = '26064fcda0b040deab5358c70c1e7f9e'
+let SECRET = 'd42b163719c794a3b8165c5e669b1494'
+// let CHANNEL = 'api-monitor'
+let CHANNEL = 'qa-bots'
 
 const app = new App({
   token: OAUTH_TOKEN,
@@ -37,8 +39,14 @@ async function findChannel(channelName, OAUTH_TOKEN_ = OAUTH_TOKEN) {
       token: OAUTH_TOKEN_,
     })
     for (const channel of result.channels) {
-      if (channel.name === channelName) {
+      if (channelName === channel.name) {
         let channelId = channel.id
+        console.log('Found channel ID: ' + channelId)
+        return channelId
+      }
+      if (channelName === 'qa-bots') {
+        // for qa-bots in dacoco
+        let channelId = 'C03VCUMMKS5'
         console.log('Found channel ID: ' + channelId)
         return channelId
       }
