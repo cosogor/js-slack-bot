@@ -10,9 +10,7 @@
     "start": "node jest",
     "test": "jest"
   },
-  "keywords": [],
   "author": "",
-  "license": "ISC",
   "dependencies": {
     "@babel/preset-env": "^7.18.10",
     "@jest/globals": "^28.1.1",
@@ -39,5 +37,15 @@
     "prettier": "2.7.1",
     "supertest": "^6.2.3",
     "typescript": "^4.7.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heroku/node-js-getting-started"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
 }
