@@ -93,6 +93,7 @@ async function getMissionsJson(baseUrl) {
     return json
   } catch (e) {
     console.log(e)
+    sendMessage(e)
   }
 }
 
