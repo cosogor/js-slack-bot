@@ -77,7 +77,7 @@ function sleep(microsec) {
 }
 
 async function getMissionsJson(baseUrl) {
-  // return missionsJson // comment this line for the prod testing
+  return missionsJson // comment this line for the prod testing
   await sendMessage('Webdriver enabled')
   try {
     let driver = new webdriver.Builder().withCapabilities(capabilities).build()
@@ -345,12 +345,11 @@ test('Validate Missions Parameters', async () => {
   await sendMessage('Validate Missions Parameters TEST FINISHED. ERRORS: ' + errors)
 })
 
-// test('Validate Missions NFT', async () => {
-//   await sendMessage('Validate Missions NFT TEST STARTED.')
-//   let missionsArray = parseXls(missionsTable)
-//   await validateMissionsXLSCards(missionsArray)
-//   console.log('ERRORS: ' + errors)
-//   await sendMessage('Validate Missions NFT TEST FINISHED. ERRORS: ' + errors)
-//   expect(errors).toBe(0)
-// })
-//
+test('Validate Missions NFT', async () => {
+  await sendMessage('Validate Missions NFT TEST STARTED.')
+  let missionsArray = parseXls(missionsTable)
+  await validateMissionsXLSCards(missionsArray)
+  console.log('ERRORS: ' + errors)
+  await sendMessage('Validate Missions NFT TEST FINISHED. ERRORS: ' + errors)
+  expect(errors).toBe(0)
+})
