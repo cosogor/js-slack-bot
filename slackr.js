@@ -44,12 +44,12 @@ async function findChannel(channelName, OAUTH_TOKEN_ = OAUTH_TOKEN) {
         console.log('Found channel ID: ' + channelId)
         return channelId
       }
-      if (channelName === 'qa-bots') {
-        // for qa-bots in dacoco
-        let channelId = 'C03VCUMMKS5'
-        console.log('Found channel ID: ' + channelId)
-        return channelId
-      }
+    }
+    if (channelName === 'qa-bots') {
+      // for hidden channel qa-bots in dacoco
+      let channelId = 'C03VCUMMKS5'
+      console.log('Found channel ID: ' + channelId)
+      return channelId
     }
   } catch (error) {
     console.error(error)
