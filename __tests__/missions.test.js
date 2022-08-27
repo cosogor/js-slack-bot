@@ -77,7 +77,8 @@ function sleep(microsec) {
 }
 
 async function getMissionsJson(baseUrl) {
-  return missionsJson // comment this line for the prod testing
+  // return missionsJson // comment this line for the prod testing
+  await sendMessage('Webdriver enabled')
   let driver = new webdriver.Builder().withCapabilities(capabilities).build()
   await driver.get(baseUrl)
   let element = await driver
