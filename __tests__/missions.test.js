@@ -79,17 +79,21 @@ function sleep(microsec) {
 async function getMissionsJson(baseUrl) {
   // return missionsJson // comment this line for the prod testing
   await sendMessage('Webdriver enabled')
-  let driver = new webdriver.Builder().withCapabilities(capabilities).build()
-  await driver.get(baseUrl)
-  let element = await driver
-    .findElement(webdriver.By.xpath('/html/body/pre'))
-    .getAttribute('innerHTML')
-  let json = JSON.parse(element)
-  await driver.quit()
-  console.log('missionsJson: ', element)
-  fs.writeFileSync(missionsJsonFile, element)
-  console.log('Downloaded file: ' + missionsJsonFile)
-  return json
+  try {
+    let driver = new webdriver.Builder().withCapabilities(capabilities).build()
+    await driver.get(baseUrl)
+    let element = await driver
+      .findElement(webdriver.By.xpath('/html/body/pre'))
+      .getAttribute('innerHTML')
+    let json = JSON.parse(element)
+    await driver.quit()
+    console.log('missionsJson: ', element)
+    fs.writeFileSync(missionsJsonFile, element)
+    console.log('Downloaded file: ' + missionsJsonFile)
+    return json
+  } catch (e) {
+    console.log(e)
+  }
 }
 
 function parseXls(missionsXlsData) {
@@ -340,11 +344,11 @@ test('Validate Missions Parameters', async () => {
   await sendMessage('Validate Missions Parameters TEST FINISHED. ERRORS: ' + errors)
 })
 
-test('Validate Missions NFT', async () => {
-  await sendMessage('Validate Missions NFT TEST STARTED.')
-  let missionsArray = parseXls(missionsTable)
-  await validateMissionsXLSCards(missionsArray)
-  console.log('ERRORS: ' + errors)
-  await sendMessage('Validate Missions NFT TEST FINISHED. ERRORS: ' + errors)
-  expect(errors).toBe(0)
-})
+// test('Validate Missions NFT', async () => {
+//   await sendMessage('Validate Missions NFT TEST STARTED.')
+//   let missionsArray = parseXls(missionsTable)
+//   await validateMissionsXLSCards(missionsArray)
+//   console.log('ERRORS: ' + errors)
+//   await sendMessage('Validate Missions NFT TEST FINISHED. ERRORS: ' + errors)
+//   expect(errors).toBe(0)
+// })
