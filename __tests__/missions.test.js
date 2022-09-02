@@ -64,20 +64,19 @@ let missionTypes = new Map([
 // let missionTypesNormal = {};
 let missionsArray = []
 
-const capabilities = {
-  platform: 'WIN10',
-  browserName: 'chrome',
-  version: 'latest',
-  name: 'NodeJS Sample Test',
-}
-
-function sleep(microsec) {
-  let e = new Date().getTime() + microsec
+function sleep(millisecond) {
+  let e = new Date().getTime() + millisecond
   while (new Date().getTime() <= e) {}
 }
 
 async function getMissionsJson(baseUrl) {
   return missionsJson // comment this line for the prod testing
+  const capabilities = {
+    platform: 'WIN10',
+    browserName: 'chrome',
+    version: 'latest',
+    name: 'NodeJS Sample Test',
+  }
   await sendMessage('Webdriver enabled')
   try {
     let driver = new webdriver.Builder().withCapabilities(capabilities).build()
