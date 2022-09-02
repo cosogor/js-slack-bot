@@ -4,6 +4,7 @@
 /dist/.cache
 node_modules
 junk
+/junk/
 /.pnp
 .pnp.js
 .yarn
@@ -29,4 +30,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 /__tests__/ActResult/
-/junk/
+
