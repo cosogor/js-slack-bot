@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<!-- saved from url=(0081)https://www.rithmschool.com/courses/intermediate-node-express/api-tests-with-jest -->
+<html lang="en" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta property="og:image" content="https://www.rithmschool.com/assets/logos/rithm_logo-f188d2545d88917c033e407f4f87b02e2a3f5cf5dfb60e626787785fa9c13774.svg">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Learn intermediate Node.js and Express.js including password hashing with bcrypt, using cookies and sessions for authentication, OAuth with passport.js, building and securing JSON APIs and much more">
+  <meta name="author" content="Rithm School">
+
+
+  <title>Free Intermediate Node and Express Course | Rithm School</title>
+
+
+
+  <link rel="stylesheet" media="all" href="../Free%20Intermediate%20Node%20and%20Express%20Course%20_%20Rithm%20School_files/application-5513cce246a238f41feaf57cd039a69018992d3dc114a2508d07c0076f30ce98.css">
+
+  <!-- Add a stylesheet tag for the name of the action -->
+  <link rel="stylesheet" media="screen" href="../Free%20Intermediate%20Node%20and%20Express%20Course%20_%20Rithm%20School_files/main-69beda904921e3c333ed21f2aed0c331bf01b1bd1cf64ee9df327720a9ef7e99.css">
+  <link rel="stylesheet" media="screen" href="../Free%20Intermediate%20Node%20and%20Express%20Course%20_%20Rithm%20School_files/online_courses-5f5aa0adc079da6096414274ea95cbf5010c9f66e0b55e0e221f2ab002773ba1.css">
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="https://www.rithmschool.com/assets/favicon-b8a8b6e18aa3c4ab274a51634adf4cc0603d04a13cfac11d5de1bcfc42cc82e7.ico">
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="BKAgNimkdsQz1puizTSze95PWV4S9GunNj547KaEfA5FPUIOmgzON0wXW5z9j6TCEkqtkB3huw7oPwiTvmUMtg==">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<!-- Google Tag Manager -->
+<script type="text/javascript" async="" src="../Free%20Intermediate%20Node%20and%20Express%20Course%20_%20Rithm%20School_files/js"></script><script async="" src="../Free%20Intermediate%20Node%20and%20Express%20Course%20_%20Rithm%20School_files/analytics.js"></script><script type="text/javascript" async="" src="../Free%20Intermediate%20Node%20and%20Express%20Course%20_%20Rithm%20School_files/mixpanel-2-latest.min.js"></script><script async="" src="../Free%20Intermediate%20Node%20and%20Express%20Course%20_%20Rithm%20School_files/fbevents.js"></script><script async="" src="../Free%20Intermediate%20Node%20and%20Express%20Course%20_%20Rithm%20School_files/gtm.js"></script><script>(function(w, d, s, l, i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KL8SB8D');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+ fbq('init', '214663358944902');
+fbq('track', 'PageView');
+</script>
+<noscript>
+ <img height="1" width="1"
+src="https://www.facebook.com/tr?id=214663358944902&ev=PageView
+&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code -->
+
+<!-- Fullstory script -->
+
+<style>.async-hide { opacity: 0 !important} </style>
+<script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
+h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
+(a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
+})(window,document.documentElement,'async-hide','dataLayer',4000,
+{'GTM-T8LFJG2':true});</script>
+
+
+
+  <script src="../Free%20Intermediate%20Node%20and%20Express%20Course%20_%20Rithm%20School_files/application-9c5725d8de76bcadb2b246af8f3557e4910dec237f82e91c5812c4dfe3261b61.js"></script>
+  <script src="../Free%20Intermediate%20Node%20and%20Express%20Course%20_%20Rithm%20School_files/modernizr-9f5485cb25dd5942eda5959902194527f72789d762cf9bc1ffdf2bbf98b89f91.js"></script>
+
+<!-- start Mixpanel --><script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+mixpanel.init("5080e5eebdaa906ad44bebec9a917acb");</script><!-- end Mixpanel -->
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="../Free%20Intermediate%20Node%20and%20Express%20Course%20_%20Rithm%20School_files/js(1)"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B4LH2W96TB');
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-81714915-1', 'auto');
+  ga('require', 'GTM-T8LFJG2');
+
+  ga('send', 'pageview');
+</script>
+
+<script src="chrome-extension://mooikfkahbdckldjjndioackbalphokd/assets/prompt.js"></script></head>
+<body data-new-gr-c-s-check-loaded="14.1063.0" data-gr-ext-installed="">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KL8SB8D"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+  <a id="banner-alert" target="_blank" href="https://www.udemy.com/the-advanced-web-developer-bootcamp/?couponCode=LAUNCH-CODE" style="display: inline-block;">
+<div data-event-name="click_cta" data-label="location" data-event-label="banner" class="container">
+    <p type="button" class="close">×</p>
+    <span class="banner-text"><span class="banner-text">Interested in 25 hours of screencasts and over 100+ exercises? <u>Check out our new Udemy Course</u></span></span>
+  </div>
+</a>
+
+    <nav data-event-name="click_cta" data-label="location" data-event-label="navbar" id="mainNav" class="navbar navbar-default navbar-custom ">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span><i class="fa fa-2x fa-bars"></i>
+            </button>
+
+            <div class="navbar-button">
+              <a class="navbar-brand" data-event-name="click_cta" data-label="page" data-event-label="homepage" href="https://www.rithmschool.com/">
+                  <img height="45" alt="rithm school company logo" title="Rithm School Logo" src="../Free%20Intermediate%20Node%20and%20Express%20Course%20_%20Rithm%20School_files/rithm_logo-f188d2545d88917c033e407f4f87b02e2a3f5cf5dfb60e626787785fa9c13774.svg">
+</a>            </div>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                <a href="javascript:void(0)">
+                  Learn Full Time&nbsp;<span class="caret"></span>
+</a>                <ul class="dropdown-menu dropdown-menu-left">
+                    <li data-event-name="click_cta" data-label="page" data-event-label="covid"><a id="#covid" href="https://www.rithmschool.com/covid">Coronavirus Response</a>
+                    </li><li data-event-name="click_cta" data-label="page" data-event-label="program"><a id="#details" href="https://www.rithmschool.com/program">Program Details</a>
+                    </li><li data-event-name="click_cta" data-label="page" data-event-label="admissions"><a id="#admissions" href="https://www.rithmschool.com/admissions">Admissions and Course Dates</a></li>
+                    <li data-event-name="click_cta" data-label="page" data-event-label="program"><a id="#tuition" href="https://www.rithmschool.com/tuition">Tuition</a>
+                    </li><li data-event-name="click_cta" data-label="page" data-event-label="curriculum"><a id="#curriculum" href="https://www.rithmschool.com/curriculum">Curriculum</a></li>
+                    <li data-event-name="click_cta" data-label="page" data-event-label="company-projects"><a id="#company_projects" href="https://www.rithmschool.com/company-projects">Company Projects</a></li>
+                    <li data-event-name="click_cta" data-label="page" data-event-label="outcomes"><a id="#outcomes" href="https://www.rithmschool.com/outcomes">Outcomes + Job Support</a></li>
+                    <li data-event-name="click_cta" data-label="page" data-event-label="faq"><a id="#faq" href="https://www.rithmschool.com/faq">FAQs</a></li>
+                    <li data-event-name="click_cta" data-label="page" data-event-label="apply"><a id="#apply" href="https://www.rithmschool.com/apply">Apply Now</a></li>
+                  </ul>
+              </li>
+              <li class="dropdown">
+                <a href="javascript:void(0)">
+                  Workshops + Events&nbsp;<span class="caret"></span>
+</a>                <ul class="dropdown-menu dropdown-menu-left">
+
+                      <li><a id="#private_prep" href="https://www.rithmschool.com/private-prep">Private Prep</a>
+                    </li><li><a id="#workshops" href="https://www.rithmschool.com/events">All Events</a></li>
+                  </ul>
+              </li>
+                <li data-event-name="free-online-courses">
+                  <a id="#online-courses" href="https://www.rithmschool.com/courses">Free Online Courses</a>
+                </li>
+                  <li class="dropdown">
+                    <a href="javascript:void(0)">
+                      For Companies&nbsp;<span class="caret"></span>
+</a>                  <ul class="dropdown-menu dropdown-menu-left">
+                      <li data-event-name="click_cta" data-label="page" data-event-label="hire">
+                        <a id="#hire" href="https://www.rithmschool.com/hire-a-grad">Hire a Rithm Grad</a>
+                      </li>
+                    <li>
+                      <a id="#curriculum-licensing" href="https://www.rithmschool.com/curriculum-licensing">Curriculum Licensing</a>
+                    </li>
+                    </ul>
+                </li>
+                <li>
+                    <a id="#team" href="https://www.rithmschool.com/team">Our Team</a>
+                </li>
+                <li>
+                  <a id="#blog" href="https://www.rithmschool.com/blog">Blog</a>
+                </li>
+                <li>
+                    <a class="apply-now btn" id="apply" data-event-name="apply_button_clicked" href="https://www.rithmschool.com/apply">Apply Now</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</nav>
+
+
+<div class="container">
+  
+  <link rel="stylesheet" media="screen" href="../Free%20Intermediate%20Node%20and%20Express%20Course%20_%20Rithm%20School_files/sidebar-d2287389bf5271229e2383f0a7a65ef5461aa71513ea74923fba3c92c2a7c01b.css">
+
+<div id="wrapper">
+
+  <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+                  <div class="course-unit">
+  <h4>
+    <span class="unit-title">1 Building, Securing, and Testing JSON APIs</span>
+    <small>
+      <i class="fa fa-clock-o"></i>
+      6 sections, 2 - 3 hours
+    </small>
+    <i class="fa fa-2x fa-angle-right"></i>
+  </h4>
+  <ul>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/password-hashing-bcrypt">Password Hashing with bcrypt</a>
+      </li>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/authentication-with-jwts">Authentication with JWTs</a>
+      </li>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/validation-with-json-schema">Input Validation with JSONSchema</a>
+      </li>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/environment-variables-node">Environment Variables</a>
+      </li>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/api-tests-with-jest">Writing API Tests with Jest</a>
+      </li>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/api-security-exercises">API Exercise</a>
+      </li>
+  </ul>
+</div>
+
+                  <div class="course-unit">
+  <h4>
+    <span class="unit-title">2 Preparing Node APIs for Production</span>
+    <small>
+      <i class="fa fa-clock-o"></i>
+      4 sections, 1 - 2 hours
+    </small>
+    <i class="fa fa-2x fa-angle-right"></i>
+  </h4>
+  <ul>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/production-directory-structure">Production Directory Structure</a>
+      </li>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/node-process-managers">Node Process Managers</a>
+      </li>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/introduction-to-heroku">Introduction to Heroku</a>
+      </li>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/heroku-postgres">Adding a Postgres Database to Heroku</a>
+      </li>
+  </ul>
+</div>
+
+                  <div class="course-unit">
+  <h4>
+    <span class="unit-title">3 Other Tech Stacks with Node/Express</span>
+    <small>
+      <i class="fa fa-clock-o"></i>
+      4 sections, 2 - 3 hours
+    </small>
+    <i class="fa fa-2x fa-angle-right"></i>
+  </h4>
+  <ul>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/pug">Server-side Templating with Pug</a>
+      </li>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/redis">Lightweight Storage with Redis</a>
+      </li>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/passport-local">Authentication with Passport Local </a>
+      </li>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/passport-oauth">OAuth with Passport.js</a>
+      </li>
+  </ul>
+</div>
+
+                  <div class="course-unit">
+  <h4>
+    <span class="unit-title">4 MongoDB and Mongoose</span>
+    <small>
+      <i class="fa fa-clock-o"></i>
+      4 sections, 2 - 3 hours
+    </small>
+    <i class="fa fa-2x fa-angle-right"></i>
+  </h4>
+  <ul>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/introduction-to-mongodb">Introduction to NoSQL</a>
+      </li>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/introduction-to-mongoose">MongoDB with Mongoose</a>
+      </li>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/mongoose-crud">CRUD with Mongoose</a>
+      </li>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/mongoose-associations">Mongoose Associations</a>
+      </li>
+  </ul>
+</div>
+
+                  <div class="course-unit">
+  <h4>
+    <span class="unit-title">5 Real Time Applications, Mailers and Scraping</span>
+    <small>
+      <i class="fa fa-clock-o"></i>
+      4 sections, 2 - 3 hours
+    </small>
+    <i class="fa fa-2x fa-angle-right"></i>
+  </h4>
+  <ul>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/real-time-applications">Real Time Applications with Socket.io</a>
+      </li>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/node-email-nodemailer">Sending Email with Nodemailer</a>
+      </li>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/node-web-scraping">Web Scraping with Node.js</a>
+      </li>
+      <li>
+        <a href="https://www.rithmschool.com/courses/intermediate-node-express/background-jobs-kue">Background Jobs with Kue</a>
+      </li>
+  </ul>
+</div>
+
+  </ul></div>
+
+  <div data-event-name="course_continue" id="page-content-wrapper">
+    <div class="nav-links text-center">
+        <a id="next-link" href="https://www.rithmschool.com/courses/intermediate-node-express/environment-variables-node">Previous</a> |
+      <a href="https://www.rithmschool.com/courses/intermediate-node-express">Table of Contents</a>
+        | <a id="next-link" href="https://www.rithmschool.com/courses/intermediate-node-express/api-security-exercises">Next</a>
+    </div>
+    <h1 class="begin-text heading">{&nbsp;Writing API Tests with Jest.&nbsp;}</h1>
+
+    <button id="show-courses">
+      <i class="fa fa-angle-double-right fa-2x"></i>
+    </button>
+
+    <div data-unit="1" id="course-content">
+      <h3>Objectives:</h3>
+
+<p>By the end of this chapter, you should be able to:</p>
+
+<ul>
+<li>Write code to test API endpoints</li>
+<li>Use <code>jest</code> and <code>supertest</code> to write unit and integration tests</li>
+</ul>
+
+<h3>Jest Introduction</h3>
+
+<p><a target="_blank" href="https://facebook.github.io/jest/" rel="noopener noreferrer">Jest</a> is a wonderful testing library created by Facebook to help test JavaScript code, React components, and much more. What's great about Jest is it not only has a similar syntax to other testing/assertion libraries like Jasmine and Chai, but with Jest your tests run in parallel so they are executed much faster than other testing frameworks.</p>
+
+<p>To use <code>jest</code> globally we can install it with <code>npm install -g jest</code>. If you are getting errors with this installation you can use <code>sudo npm install -g jest</code>. Since installing with sudo is not the best option, you can read more about how to fix permissions <a target="_blank" href="https://stackoverflow.com/questions/16151018/npm-throws-error-without-sudo" rel="noopener noreferrer">here</a> if you would like to install without <code>sudo</code> going forward.</p>
+
+<p>Since we are using testing libraries, these are not dependencies that will be using in production. Therefore, when we install these using <code>npm</code> we want to make sure to run <code>npm install --save-dev</code> rather than <code>npm install</code>, so that we do save them to our <code>package.json</code>, but do not install them in production. When you do this, you should see that your <code>package.json</code> consists of two sets of dependencies: <code>dependencies</code> and <code>devDependencies</code>.</p>
+
+<h3>Unit Tests</h3>
+
+<p>To start, we're going to use <code>jest</code> to write a few simple unit tests. Let's run the following in Terminal.</p>
+<div class="CodeRay">
+  <div class="code"><pre>mkdir learn-jest
+cd learn-jest
+npm init -y
+mkdir __tests__
+touch __tests__/first.test.js
+touch index.js
+</pre></div>
+</div>
+
+<p>Notice here that we have placed our tests inside of a <code>__tests__</code> folder, which is important for <code>jest</code> to</p>
+
+<p>Let's now run <code>jest</code> (make sure you have installed it globally using <code>npm install -g jest</code>) and we should see the following:</p>
+<div class="CodeRay">
+  <div class="code"><pre> FAIL  __tests__/first.test.js
+  ● Test suite failed to run
+
+    Your test suite must contain at least one test.
+
+      at node_modules/jest/node_modules/jest-cli/build/test_scheduler.js:246:22
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        1.488s
+Ran all test suites.
+</pre></div>
+</div>
+
+<p>So let's go add a simple test in our <code>first.test.js</code> file! Inside of there let's write:</p>
+<div class="CodeRay">
+  <div class="code"><pre>test(<span class="string"><span class="delimiter">"</span><span class="content">It adds two numbers</span><span class="delimiter">"</span></span>, () =&gt; {
+  expect(<span class="integer">1</span> + <span class="integer">1</span>).toBe(<span class="integer">2</span>);
+});
+</pre></div>
+</div>
+
+<p>When we run <code>jest</code> again, we should see the following:</p>
+<div class="CodeRay">
+  <div class="code"><pre> PASS  __tests__/first.test.js
+  <span class="error">✓</span> it adds two numbers (<span class="integer">4</span>ms)
+
+Test Suites: <span class="integer">1</span> passed, <span class="integer">1</span> total
+Tests:       <span class="integer">1</span> passed, <span class="integer">1</span> total
+Snapshots:   <span class="integer">0</span> total
+Time:        <span class="float">2.018</span>s
+Ran all test suites.
+</pre></div>
+</div>
+
+<p>Looks good! Let's now run <code>jest --watchAll</code> and we should see the following:</p>
+<div class="CodeRay">
+  <div class="code"><pre> PASS  __tests__/first.test.js
+  <span class="error">✓</span> it adds two numbers (<span class="integer">4</span>ms)
+
+Test Suites: <span class="integer">1</span> passed, <span class="integer">1</span> total
+Tests:       <span class="integer">1</span> passed, <span class="integer">1</span> total
+Snapshots:   <span class="integer">0</span> total
+Time:        <span class="float">0.991</span>s, estimated <span class="integer">1</span>s
+Ran all test suites.
+
+Watch Usage
+ <span class="error">›</span> Press f to run only failed tests.
+ <span class="error">›</span> Press o to only run tests related to changed files.
+ <span class="error">›</span> Press p to filter by a filename regex pattern.
+ <span class="error">›</span> Press t to filter by a test name regex pattern.
+ <span class="error">›</span> Press q to quit watch mode.
+ <span class="error">›</span> Press Enter to trigger a test run.
+</pre></div>
+</div>
+
+<p>What we're looking at here is the ability for Jest to constantly watch for changes to our tests! This is a wonderful way to not have to run <code>jest</code> every time we want to see if our tests pass and makes Test Driven Development even easier!</p>
+
+<p>Let's try testing a simple function in our <code>index.js</code> file. Let's write a function called letterCount which accepts a character and a string and returns the number of times that character appears. We can do this from a TDD perspective so let's write some failing tests first! In our <code>first.test.js</code> file let's add:</p>
+<div class="CodeRay">
+  <div class="code"><pre>const letterCount = require(<span class="string"><span class="delimiter">"</span><span class="content">../</span><span class="delimiter">"</span></span>); <span class="comment">// same as ../index.js</span>
+
+test(<span class="string"><span class="delimiter">"</span><span class="content">letterCount works with regular strings</span><span class="delimiter">"</span></span>, () =&gt; {
+  expect(letterCount(<span class="string"><span class="delimiter">"</span><span class="content">awesome</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">e</span><span class="delimiter">"</span></span>)).toBe(<span class="integer">2</span>);
+});
+</pre></div>
+</div>
+
+<p>Right away we should see:</p>
+<div class="CodeRay">
+  <div class="code"><pre> FAIL  __tests__/first.test.js
+  ✕ letterCount works with regular strings (5ms)
+
+  ● letterCount works with regular strings
+
+    TypeError: letterCount is not a function
+
+      2 |
+      3 | test("letterCount works with regular strings", () =&gt; {
+    &gt; 4 |   expect(letterCount("awesome", "e")).toBe(2);
+        |          ^
+      5 | });
+      6 |
+
+      at Object.&lt;anonymous&gt;.test (__tests__/first.test.js:4:10)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.475s, estimated 1s
+Ran all test suites.
+</pre></div>
+</div>
+
+<p>In our index.js let's go make sure we have a function!</p>
+<div class="CodeRay">
+  <div class="code"><pre><span class="keyword">function</span> <span class="function">letterCount</span>(str, <span class="reserved">char</span>) {}
+
+module.exports = letterCount;
+</pre></div>
+</div>
+
+<p>Back in Terminal - we should now see the following output:</p>
+<div class="CodeRay">
+  <div class="code"><pre> FAIL  __tests__/first.test.js
+  ✕ letterCount works with regular strings (5ms)
+
+  ● letterCount works with regular strings
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: undefined
+
+    Difference:
+
+      Comparing two different types of values. Expected number but received undefined.
+
+      2 |
+      3 | test("letterCount works with regular strings", () =&gt; {
+    &gt; 4 |   expect(letterCount("awesome", "e")).toBe(2);
+        |                                       ^
+      5 | });
+      6 |
+
+      at Object.&lt;anonymous&gt;.test (__tests__/first.test.js:4:39)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.548s
+Ran all test suites.
+</pre></div>
+</div>
+
+<p>Our tests are still failing because we didnt implement the function, so let's do that! In our <code>index.js</code>, let's add:</p>
+<div class="CodeRay">
+  <div class="code"><pre><span class="keyword">function</span> <span class="function">letterCount</span>(str, <span class="reserved">char</span>) {
+  let count = <span class="integer">0</span>;
+  <span class="keyword">for</span> (let letter of str) {
+    <span class="keyword">if</span> (letter === <span class="reserved">char</span>) {
+      count++;
+    }
+  }
+  <span class="keyword">return</span> count;
+}
+
+module.exports = letterCount;
+</pre></div>
+</div>
+
+<p>We should now see the following in the Terminal:</p>
+<div class="CodeRay">
+  <div class="code"><pre> PASS  __tests__/first.test.js
+  ✓ letterCount works with regular strings (3ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        0.746s, estimated 1s
+Ran all test suites.
+</pre></div>
+</div>
+
+<h3>Your Turn</h3>
+
+<p>Try adding some more tests to watch for edge cases (capital vs lowercase letters, invalid input, etc)!</p>
+
+<h3>Matchers</h3>
+
+<p>Jest has quite a few functions used for assertions/expectations. You can see a full list <a target="_blank" href="https://facebook.github.io/jest/docs/en/expect.html" rel="noopener noreferrer">here</a>, but here are some common ones.</p>
+
+<ul>
+<li><code>toBeDefined</code></li>
+<li><code>toBeGreaterThan / toBeLessThan</code></li>
+<li><code>toBe</code> (uses === to compare)</li>
+<li><code>toEqual</code> (for deep object comparison)</li>
+<li><code>toContain</code> (see if a value is inside of a collection)</li>
+</ul>
+
+<p>Let's try out a few more examples of the syntax in <code>learn.test.js</code>:</p>
+<div class="CodeRay">
+  <div class="code"><pre>test(<span class="string"><span class="delimiter">"</span><span class="content">arithmetic</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
+  expect(<span class="integer">4</span> + <span class="integer">4</span>).toBeGreaterThan(<span class="integer">7</span>);
+  expect(<span class="integer">4</span> + <span class="integer">4</span>).toBeLessThan(<span class="integer">9</span>);
+});
+
+test(<span class="string"><span class="delimiter">"</span><span class="content">references</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
+  <span class="keyword">var</span> arr = [<span class="integer">1</span>, <span class="integer">2</span>, <span class="integer">3</span>];
+  expect(arr).toEqual([<span class="integer">1</span>, <span class="integer">2</span>, <span class="integer">3</span>]);
+  expect(arr).not.toBe([<span class="integer">1</span>, <span class="integer">2</span>, <span class="integer">3</span>]); <span class="comment">// since === doesn't do deep comparison!</span>
+  expect(arr).toContain(<span class="integer">1</span>);
+});
+</pre></div>
+</div>
+
+<h3>Integration Tests</h3>
+
+<p>So far we've been writing pretty simple unit tests, which is a good start, but when we're building APIs we'll most likely want to test how these units work together or how the integrate. To do that, we'll need to write some integration tests where we'll test that an HTTP request to our API yields the response we expect. To perform integration tests in our express application we'll be using a module called <code>supertest</code>.</p>
+
+<h3>Testing a simple API using jest and supertest</h3>
+
+<p>You can find the code for this entire example <a target="_blank" href="https://github.com/rithmschool/express-pg-jest-supertest" rel="noopener noreferrer">here</a></p>
+
+<p>Let's start off building a very simple application - we'll add a database and more routes later, let's just focus on the syntax for now.</p>
+<div class="CodeRay">
+  <div class="code"><pre>mkdir testing-with-express
+cd testing-with-express
+touch app.js
+npm init -y
+npm install --save-dev supertest
+npm install express body-parser
+mkdir __tests__
+touch __tests__/students.test.js
+</pre></div>
+</div>
+
+<p>Let's set up a very simple <code>app.js</code></p>
+<div class="CodeRay">
+  <div class="code"><pre>const express = require(<span class="string"><span class="delimiter">"</span><span class="content">express</span><span class="delimiter">"</span></span>);
+const app = express();
+const bodyParser = require(<span class="string"><span class="delimiter">"</span><span class="content">body-parser</span><span class="delimiter">"</span></span>);
+
+app.use(bodyParser.json());
+
+const students = [<span class="string"><span class="delimiter">"</span><span class="content">Elie</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">Matt</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">Joel</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">Michael</span><span class="delimiter">"</span></span>];
+
+app.get(<span class="string"><span class="delimiter">"</span><span class="content">/</span><span class="delimiter">"</span></span>, (req, res) =&gt; {
+  <span class="keyword">return</span> res.json(students);
+});
+
+app.listen(() =&gt; {
+  console.log(<span class="string"><span class="delimiter">"</span><span class="content">Server starting on port 3000</span><span class="delimiter">"</span></span>);
+});
+</pre></div>
+</div>
+
+<p>Now there's actually a problem here when we want to start testing! In our test file we are going to include the <code>app</code> variable from our <code>app.js</code> so that we can tell <code>supertest</code> which express application we are referring to. However, we are not currently exporting anything from our <code>app.js</code>. At the same time, if we <code>require</code> our <code>app.js</code> we will actually start the server using <code>app.listen</code>. So what we are going to do is make another file called <code>server.js</code> which will just contain our <code>app.listen</code> code and we will export out the <code>app</code> variable from our <code>app.js</code> - here's what our <code>app.js</code> should look like now:</p>
+<div class="CodeRay">
+  <div class="code"><pre>const express = require(<span class="string"><span class="delimiter">"</span><span class="content">express</span><span class="delimiter">"</span></span>);
+const app = express();
+const bodyParser = require(<span class="string"><span class="delimiter">"</span><span class="content">body-parser</span><span class="delimiter">"</span></span>);
+
+app.use(bodyParser.json());
+
+const students = [<span class="string"><span class="delimiter">"</span><span class="content">Elie</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">Matt</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">Joel</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">Michael</span><span class="delimiter">"</span></span>];
+
+app.get(<span class="string"><span class="delimiter">"</span><span class="content">/</span><span class="delimiter">"</span></span>, (req, res) =&gt; {
+  <span class="keyword">return</span> res.json(students);
+});
+
+module.exports = app;
+</pre></div>
+</div>
+
+<p>And here is what our <code>server.js</code> should look like:</p>
+<div class="CodeRay">
+  <div class="code"><pre>const app = require(<span class="string"><span class="delimiter">"</span><span class="content">./app</span><span class="delimiter">"</span></span>);
+
+app.listen(<span class="integer">3000</span>, () =&gt; console.log(<span class="string"><span class="delimiter">"</span><span class="content">server starting on port 3000!</span><span class="delimiter">"</span></span>));
+</pre></div>
+</div>
+
+<p>If we want to start our server we can run <code>nodemon server.js</code> and when we export our <code>app</code> variable we will not be starting the server! Now that we have this setup out of the way, let's write our first test with supertest!</p>
+
+<h3>Testing with Jest and Supertest</h3>
+
+<p>To get started with <code>supertest</code>, we need to include a bit of information in our <code>students.test.js</code>:</p>
+<div class="CodeRay">
+  <div class="code"><pre><span class="comment">// we will use supertest to test HTTP requests/responses</span>
+const request = require(<span class="string"><span class="delimiter">"</span><span class="content">supertest</span><span class="delimiter">"</span></span>);
+<span class="comment">// we also need our app for the correct routes!</span>
+const app = require(<span class="string"><span class="delimiter">"</span><span class="content">../app</span><span class="delimiter">"</span></span>);
+</pre></div>
+</div>
+
+<p>Now that we have that set up, let's write our first test to see what happens when we go to the root route. We're going to expect that we get back the response which is an array of strings (as defined in our <code>app.js</code>).</p>
+<div class="CodeRay">
+  <div class="code"><pre>describe(<span class="string"><span class="delimiter">"</span><span class="content">GET / </span><span class="delimiter">"</span></span>, () =&gt; {
+  test(<span class="string"><span class="delimiter">"</span><span class="content">It should respond with an array of students</span><span class="delimiter">"</span></span>, async () =&gt; {
+    const response = await request(app).get(<span class="string"><span class="delimiter">"</span><span class="content">/</span><span class="delimiter">"</span></span>);
+    expect(response.body).toEqual([<span class="string"><span class="delimiter">"</span><span class="content">Elie</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">Matt</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">Joel</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">Michael</span><span class="delimiter">"</span></span>]);
+    expect(response.statusCode).toBe(<span class="integer">200</span>);
+  });
+});
+</pre></div>
+</div>
+
+<p>If we run <code>jest</code> in the Terminal, we should see one test passing! Notice here that we are using <code>supertest</code> to make the HTTP request and getting a <code>response</code> from that request. In our <code>app.js</code> we simply were sending back an array of strings so we're just testing to see that we get that expected response as well as a 200 status code. This is working well, but as our application grows, we are going to include a database as well, so how do we go about testing data backed by a database? It's not too bad, it just requires a little bit of configuration!</p>
+
+<h3>Adding a test database</h3>
+
+<p>Now that we have an idea of how to test simple routes, let's include a database to store our students and test that we can do full CRUD on students! The first thing we need to do is a bit of file/folder setup, so in the root of our application, let's do the following in Terminal:</p>
+<div class="CodeRay">
+  <div class="code"><pre>createdb students # this will be our development database
+createdb students-test # this will be our test database
+mkdir db
+touch db/index.js
+mkdir routes
+touch routes/students.js
+</pre></div>
+</div>
+
+<p>Now that we have our development and test databases, we need a way of telling our application that we are running tests or starting the development server. To do this, we'll use environment variables!</p>
+
+<p>Fortunately, you don't have to worry about setting anything in a <code>.env</code> file as there is nothing sensitive here. Let's start in our <code>db/index.js</code></p>
+<div class="CodeRay">
+  <div class="code"><pre>const { Client } = require(<span class="string"><span class="delimiter">"</span><span class="content">pg</span><span class="delimiter">"</span></span>);
+const db = process.env.NODE_ENV === <span class="string"><span class="delimiter">"</span><span class="content">test</span><span class="delimiter">"</span></span> ? <span class="string"><span class="delimiter">"</span><span class="content">students-test</span><span class="delimiter">"</span></span> : <span class="string"><span class="delimiter">"</span><span class="content">students</span><span class="delimiter">"</span></span>;
+
+client = <span class="keyword">new</span> Client({
+  <span class="key">connectionString</span>: <span class="">`</span>postgresql:<span class="comment">//localhost/${db}`</span>
+});
+
+client.connect();
+
+module.exports = client;
+</pre></div>
+</div>
+
+<p>Notice here we are first checking to see what the value of the <code>NODE_ENV</code> environment variable is. If it is <code>"test"</code>, we will use the <code>students-test</code> database, otherwise we will use the <code>students</code> database. The rest of this code is what we have seen before, all we are doing now is determining if we should use the test or development database. When testing applications, you almost always will remove any data you start with so that your tests can be consistent, whereas in development you will want to remember certain data as you develop and manually test your application. So where do we set this <code>NODE_ENV</code> variable? Let's do that in our <code>__tests__/students.test.js</code> file!</p>
+<div class="CodeRay">
+  <div class="code"><pre>process.env.NODE_ENV = <span class="string"><span class="delimiter">"</span><span class="content">test</span><span class="delimiter">"</span></span>;
+const db = require(<span class="string"><span class="delimiter">"</span><span class="content">../db</span><span class="delimiter">"</span></span>);
+
+const request = require(<span class="string"><span class="delimiter">"</span><span class="content">supertest</span><span class="delimiter">"</span></span>);
+const app = require(<span class="string"><span class="delimiter">"</span><span class="content">../app</span><span class="delimiter">"</span></span>);
+</pre></div>
+</div>
+
+<p>These first two lines ensure that we are setting the <code>NODE_ENV</code> to test, and that we are brining in the export from <code>db/index.js</code>.</p>
+
+<h3>Setting Up and Tearing Down the test suite</h3>
+
+<p>Now that we are able to connect to the right database, we need to think about how to handle some data in our application. Here are some things we might want to do</p>
+
+<ul>
+<li>Before all the tests run, create a table called students.</li>
+<li>Before each test, seed the database with a couple rows of data.</li>
+<li>After each test, delete all the rows in the students table (so we can be consistent).</li>
+<li>After all the tests run, drop the table called students and close the database connection.</li>
+</ul>
+
+<p>This process of "setup" and "teardown" are very common when testing applications. In Jest, these are done using four different functions:</p>
+
+<ol>
+<li> <code>beforeAll</code> - called <strong>once</strong> before all tests.</li>
+<li> <code>beforeEach</code> - called before each of these tests (before every <code>test</code> function).</li>
+<li> <code>afterEach</code> - called after each of these tests (after every <code>test</code> function).</li>
+<li> <code>afterAll</code> - called <strong>once</strong> after all tests.</li>
+</ol>
+
+<p>Now that you have an idea of what they look like, let's add the following to our <code>__tests__/students.test.js</code></p>
+<div class="CodeRay">
+  <div class="code"><pre>process.env.NODE_ENV = <span class="string"><span class="delimiter">"</span><span class="content">test</span><span class="delimiter">"</span></span>;
+const db = require(<span class="string"><span class="delimiter">"</span><span class="content">../db</span><span class="delimiter">"</span></span>);
+const request = require(<span class="string"><span class="delimiter">"</span><span class="content">supertest</span><span class="delimiter">"</span></span>);
+const app = require(<span class="string"><span class="delimiter">"</span><span class="content">../app</span><span class="delimiter">"</span></span>);
+
+beforeAll(async () =&gt; {
+  await db.query(<span class="string"><span class="delimiter">"</span><span class="content">CREATE TABLE students (id SERIAL PRIMARY KEY, name TEXT)</span><span class="delimiter">"</span></span>);
+});
+
+beforeEach(async () =&gt; {
+  <span class="comment">// seed with some data</span>
+  await db.query(<span class="string"><span class="delimiter">"</span><span class="content">INSERT INTO students (name) VALUES ('Elie'), ('Matt')</span><span class="delimiter">"</span></span>);
+});
+
+afterEach(async () =&gt; {
+  await db.query(<span class="string"><span class="delimiter">"</span><span class="content">DELETE FROM students</span><span class="delimiter">"</span></span>);
+});
+
+afterAll(async () =&gt; {
+  await db.query(<span class="string"><span class="delimiter">"</span><span class="content">DROP TABLE students</span><span class="delimiter">"</span></span>);
+  db.end();
+});
+</pre></div>
+</div>
+
+<p>Now that we have this initial setup working, let's go back to our <code>routes/students.js</code> file and add four simple routes for CRUD functionality. We're not going to worry about error handling, let's keep this example simple.</p>
+<div class="CodeRay">
+  <div class="code"><pre>const express = require(<span class="string"><span class="delimiter">"</span><span class="content">express</span><span class="delimiter">"</span></span>);
+const router = express.Router();
+const db = require(<span class="string"><span class="delimiter">"</span><span class="content">../db</span><span class="delimiter">"</span></span>);
+
+router.get(<span class="string"><span class="delimiter">"</span><span class="content">/</span><span class="delimiter">"</span></span>, async (req, res) =&gt; {
+  const data = await db.query(<span class="string"><span class="delimiter">"</span><span class="content">SELECT * FROM students</span><span class="delimiter">"</span></span>);
+  <span class="keyword">return</span> res.json(data.rows);
+});
+
+router.post(<span class="string"><span class="delimiter">"</span><span class="content">/</span><span class="delimiter">"</span></span>, async (req, res) =&gt; {
+  const data = await db.query(
+    <span class="string"><span class="delimiter">"</span><span class="content">INSERT INTO students (name) VALUES ($1) RETURNING *</span><span class="delimiter">"</span></span>,
+    [req.body.name]
+  );
+  <span class="keyword">return</span> res.json(data.rows[<span class="integer">0</span>]);
+});
+
+router.patch(<span class="string"><span class="delimiter">"</span><span class="content">/:id</span><span class="delimiter">"</span></span>, async (req, res) =&gt; {
+  const data = await db.query(
+    <span class="string"><span class="delimiter">"</span><span class="content">UPDATE students SET name=$1 WHERE id=$2 RETURNING *</span><span class="delimiter">"</span></span>,
+    [req.body.name, req.params.id]
+  );
+  <span class="keyword">return</span> res.json(data.rows[<span class="integer">0</span>]);
+});
+
+router.<span class="keyword">delete</span>(<span class="string"><span class="delimiter">"</span><span class="content">/:id</span><span class="delimiter">"</span></span>, async (req, res) =&gt; {
+  const data = await db.query(<span class="string"><span class="delimiter">"</span><span class="content">DELETE FROM students WHERE id=$1</span><span class="delimiter">"</span></span>, [
+    req.params.id
+  ]);
+  <span class="keyword">return</span> res.json({ <span class="key">message</span>: <span class="string"><span class="delimiter">"</span><span class="content">Deleted</span><span class="delimiter">"</span></span> });
+});
+
+module.exports = router;
+</pre></div>
+</div>
+
+<p>And now in our <code>app.js</code>, let's make sure to include these routes:</p>
+<div class="CodeRay">
+  <div class="code"><pre>const express = require(<span class="string"><span class="delimiter">"</span><span class="content">express</span><span class="delimiter">"</span></span>);
+const app = express();
+const db = require(<span class="string"><span class="delimiter">"</span><span class="content">./db</span><span class="delimiter">"</span></span>);
+const students = [<span class="string"><span class="delimiter">"</span><span class="content">Elie</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">Matt</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">Joel</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">Michael</span><span class="delimiter">"</span></span>];
+const bodyParser = require(<span class="string"><span class="delimiter">"</span><span class="content">body-parser</span><span class="delimiter">"</span></span>);
+const studentRoutes = require(<span class="string"><span class="delimiter">"</span><span class="content">./routes/students</span><span class="delimiter">"</span></span>);
+
+app.use(bodyParser.json());
+app.use(<span class="string"><span class="delimiter">"</span><span class="content">/students</span><span class="delimiter">"</span></span>, studentRoutes);
+
+app.get(<span class="string"><span class="delimiter">"</span><span class="content">/</span><span class="delimiter">"</span></span>, (req, res) =&gt; {
+  <span class="keyword">return</span> res.json(students);
+});
+
+module.exports = app;
+</pre></div>
+</div>
+
+<p>Now that we have this functionality in place, let's write some tests for each of these endpoints!</p>
+
+<h3>Integration Testing with Supertest</h3>
+
+<p>We previously saw how to test a simple route using supertest. Fortunately, we don't need to do too much more to test our <code>GET /students</code> route. Here is what that might look like:</p>
+<div class="CodeRay">
+  <div class="code"><pre>describe(<span class="string"><span class="delimiter">"</span><span class="content">GET /students</span><span class="delimiter">"</span></span>, () =&gt; {
+  test(<span class="string"><span class="delimiter">"</span><span class="content">It responds with an array of students</span><span class="delimiter">"</span></span>, async () =&gt; {
+    const response = await request(app).get(<span class="string"><span class="delimiter">"</span><span class="content">/students</span><span class="delimiter">"</span></span>);
+    expect(response.body.length).toBe(<span class="integer">2</span>);
+    expect(response.body[<span class="integer">0</span>]).toHaveProperty(<span class="string"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>);
+    expect(response.body[<span class="integer">0</span>]).toHaveProperty(<span class="string"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>);
+    expect(response.statusCode).toBe(<span class="integer">200</span>);
+  });
+});
+</pre></div>
+</div>
+
+<p>Notice here we are expecting 2 records back, because in our <code>beforeEach</code> we seeded the database with two records. We're also expecting each record to have an <code>id</code> and <code>name</code> property. Now that we have read working, how would we test creating? Similar to the test above, we just need to send some data in this HTTP request.</p>
+<div class="CodeRay">
+  <div class="code"><pre>describe(<span class="string"><span class="delimiter">"</span><span class="content">POST /students</span><span class="delimiter">"</span></span>, () =&gt; {
+  test(<span class="string"><span class="delimiter">"</span><span class="content">It responds with the newly created student</span><span class="delimiter">"</span></span>, async () =&gt; {
+    const newStudent = await request(app)
+      .post(<span class="string"><span class="delimiter">"</span><span class="content">/students</span><span class="delimiter">"</span></span>)
+      .send({
+        <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">New Student</span><span class="delimiter">"</span></span>
+      });
+
+    <span class="comment">// make sure we add it correctly</span>
+    expect(newStudent.body).toHaveProperty(<span class="string"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>);
+    expect(newStudent.body.name).toBe(<span class="string"><span class="delimiter">"</span><span class="content">New Student</span><span class="delimiter">"</span></span>);
+    expect(newStudent.statusCode).toBe(<span class="integer">200</span>);
+
+    <span class="comment">// make sure we have 3 students now</span>
+    const response = await request(app).get(<span class="string"><span class="delimiter">"</span><span class="content">/students</span><span class="delimiter">"</span></span>);
+    expect(response.body.length).toBe(<span class="integer">3</span>);
+  });
+});
+</pre></div>
+</div>
+
+<p>Notice here we are using the <code>send</code> method to populate <code>req.body</code> so that we can create a new record. Here we are expecting that our new student has a name and id that are correct and that we now have 3 students in our table.</p>
+
+<h3>Testing Update</h3>
+
+<p>Let's move onto update! Here we're going to test if we can create a record and update it successfully and make sure we still have 3 students in the table. Here's what that might look like:</p>
+<div class="CodeRay">
+  <div class="code"><pre>describe(<span class="string"><span class="delimiter">"</span><span class="content">PATCH /students/1</span><span class="delimiter">"</span></span>, () =&gt; {
+  test(<span class="string"><span class="delimiter">"</span><span class="content">It responds with an updated student</span><span class="delimiter">"</span></span>, async () =&gt; {
+    const newStudent = await request(app)
+      .post(<span class="string"><span class="delimiter">"</span><span class="content">/students</span><span class="delimiter">"</span></span>)
+      .send({
+        <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">Another one</span><span class="delimiter">"</span></span>
+      });
+    const updatedStudent = await request(app)
+      .patch(<span class="">`</span><span class="regexp"><span class="delimiter">/</span><span class="content">students</span><span class="delimiter">/</span></span><span class="predefined">$</span>{newStudent.body.id}<span class="">`</span>)
+      .send({ <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">updated</span><span class="delimiter">"</span></span> });
+    expect(updatedStudent.body.name).toBe(<span class="string"><span class="delimiter">"</span><span class="content">updated</span><span class="delimiter">"</span></span>);
+    expect(updatedStudent.body).toHaveProperty(<span class="string"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>);
+    expect(updatedStudent.statusCode).toBe(<span class="integer">200</span>);
+
+    <span class="comment">// make sure we have 3 students</span>
+    const response = await request(app).get(<span class="string"><span class="delimiter">"</span><span class="content">/students</span><span class="delimiter">"</span></span>);
+    expect(response.body.length).toBe(<span class="integer">3</span>);
+  });
+});
+</pre></div>
+</div>
+
+<h3>Testing Delete</h3>
+
+<p>Let's move onto delete! Here we're going to test if we can delete a record, that the response is what we expect, and that we only have 2 students in the table. Here's what that might look like:</p>
+<div class="CodeRay">
+  <div class="code"><pre>describe(<span class="string"><span class="delimiter">"</span><span class="content">DELETE /students/1</span><span class="delimiter">"</span></span>, () =&gt; {
+  test(<span class="string"><span class="delimiter">"</span><span class="content">It responds with a message of Deleted</span><span class="delimiter">"</span></span>, async () =&gt; {
+    const newStudent = await request(app)
+      .post(<span class="string"><span class="delimiter">"</span><span class="content">/students</span><span class="delimiter">"</span></span>)
+      .send({
+        <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">Another one</span><span class="delimiter">"</span></span>
+      });
+    const removedStudent = await request(app).<span class="keyword">delete</span>(
+      <span class="">`</span><span class="regexp"><span class="delimiter">/</span><span class="content">students</span><span class="delimiter">/</span></span><span class="predefined">$</span>{newStudent.body.id}<span class="">`</span>
+    );
+    expect(removedStudent.body).toEqual({ <span class="key">message</span>: <span class="string"><span class="delimiter">"</span><span class="content">Deleted</span><span class="delimiter">"</span></span> });
+    expect(removedStudent.statusCode).toBe(<span class="integer">200</span>);
+
+    <span class="comment">// make sure we still have 2 students</span>
+    const response = await request(app).get(<span class="string"><span class="delimiter">"</span><span class="content">/students</span><span class="delimiter">"</span></span>);
+    expect(response.body.length).toBe(<span class="integer">2</span>);
+  });
+});
+</pre></div>
+</div>
+
+<p>If we run <code>jest</code> in the Terminal, we should see all of our tests passing!</p>
+
+<p>You can find the code for this entire example <a target="_blank" href="https://github.com/rithmschool/express-pg-jest-supertest" rel="noopener noreferrer">here</a></p>
+
+<h3>Testing authentication and authorization</h3>
+
+<p>Now that we have a basic idea of how to test our CRUD operations, let's add some additional tests to make sure that users who are logged in (authenticated) can only perform CRUD operations on specific records (authorized).</p>
+
+<p>Imagine we have the following routes:</p>
+
+<ul>
+<li><code>POST /users/auth</code> - returns a JWT when a successful username and password are sent</li>
+<li><code>GET /users/</code> - returns all of the users, requires a valid JWT</li>
+<li><code>GET /users/secure/:id</code> - returns a simple messages, requires a valid JWT and the id in the URL has to match the id stored in the JWT</li>
+</ul>
+
+<p>In this file, we'll write tests for <code>GET /users</code> and <code>GET /users/secure/:id</code>. In order to do that, we're going to need some setup that requires us to create a user, login a user, and remember the token and id stored in the token for testing. We'll store those pieces of information in a global object called <code>auth</code>.</p>
+<div class="CodeRay">
+  <div class="code"><pre>process.env.NODE_ENV = <span class="string"><span class="delimiter">"</span><span class="content">test</span><span class="delimiter">"</span></span>;
+const db = require(<span class="string"><span class="delimiter">"</span><span class="content">../db</span><span class="delimiter">"</span></span>);
+const request = require(<span class="string"><span class="delimiter">"</span><span class="content">supertest</span><span class="delimiter">"</span></span>);
+const app = require(<span class="string"><span class="delimiter">"</span><span class="content">../</span><span class="delimiter">"</span></span>);
+<span class="comment">// for decoding the token and easily extracting the id from the payload</span>
+const jsonwebtoken = require(<span class="string"><span class="delimiter">"</span><span class="content">jsonwebtoken</span><span class="delimiter">"</span></span>);
+<span class="comment">// for hashing the password successfully when we create users</span>
+const bcrypt = require(<span class="string"><span class="delimiter">"</span><span class="content">bcrypt</span><span class="delimiter">"</span></span>);
+
+<span class="comment">// our global object for storing auth information</span>
+let auth = {};
+
+<span class="comment">// before everything - create the table</span>
+beforeAll(async () =&gt; {
+  await db.query(
+    <span class="string"><span class="delimiter">"</span><span class="content">CREATE TABLE users (id SERIAL PRIMARY KEY, username TEXT, password TEXT)</span><span class="delimiter">"</span></span>
+  );
+});
+<span class="comment">// before each request, create a user and log them in</span>
+beforeEach(async () =&gt; {
+  const hashedPassword = await bcrypt.hash(<span class="string"><span class="delimiter">"</span><span class="content">secret</span><span class="delimiter">"</span></span>, <span class="integer">1</span>);
+  await db.query(<span class="string"><span class="delimiter">"</span><span class="content">INSERT INTO users (username, password) VALUES ('test', $1)</span><span class="delimiter">"</span></span>, [
+    hashedPassword
+  ]);
+  const response = await request(app)
+    .post(<span class="string"><span class="delimiter">"</span><span class="content">/users/auth</span><span class="delimiter">"</span></span>)
+    .send({
+      <span class="key">username</span>: <span class="string"><span class="delimiter">"</span><span class="content">test</span><span class="delimiter">"</span></span>,
+      <span class="key">password</span>: <span class="string"><span class="delimiter">"</span><span class="content">secret</span><span class="delimiter">"</span></span>
+    });
+  <span class="comment">// take the result of the POST /users/auth which is a JWT</span>
+  <span class="comment">// store it in the auth object</span>
+  auth.token = response.body.token;
+  <span class="comment">// store the id from the token in the auth object</span>
+  auth.current_user_id = jsonwebtoken.decode(auth.token).user_id;
+});
+
+<span class="comment">// remove all the users</span>
+afterEach(async () =&gt; {
+  await db.query(<span class="string"><span class="delimiter">"</span><span class="content">DELETE FROM users</span><span class="delimiter">"</span></span>);
+});
+
+<span class="comment">// drop the table and close the connection</span>
+afterAll(async () =&gt; {
+  await db.query(<span class="string"><span class="delimiter">"</span><span class="content">DROP TABLE users</span><span class="delimiter">"</span></span>);
+  db.end();
+});
+
+describe(<span class="string"><span class="delimiter">"</span><span class="content">GET /users</span><span class="delimiter">"</span></span>, () =&gt; {
+  test(<span class="string"><span class="delimiter">"</span><span class="content">returns a list of users</span><span class="delimiter">"</span></span>, async () =&gt; {
+    const response = await request(app)
+      .get(<span class="string"><span class="delimiter">"</span><span class="content">/users</span><span class="delimiter">"</span></span>)
+      <span class="comment">// add an authorization header with the token</span>
+      .set(<span class="string"><span class="delimiter">"</span><span class="content">authorization</span><span class="delimiter">"</span></span>, auth.token);
+    expect(response.body.length).toBe(<span class="integer">1</span>);
+    expect(response.statusCode).toBe(<span class="integer">200</span>);
+  });
+});
+
+describe(<span class="string"><span class="delimiter">"</span><span class="content">GET /users without auth</span><span class="delimiter">"</span></span>, () =&gt; {
+  test(<span class="string"><span class="delimiter">"</span><span class="content">requires login</span><span class="delimiter">"</span></span>, async () =&gt; {
+    <span class="comment">// don't add an authorization header with the token...see what happens!</span>
+    const response = await request(app).get(<span class="string"><span class="delimiter">"</span><span class="content">/users/</span><span class="delimiter">"</span></span>);
+    expect(response.statusCode).toBe(<span class="integer">401</span>);
+    expect(response.body.message).toBe(<span class="string"><span class="delimiter">"</span><span class="content">Unauthorized</span><span class="delimiter">"</span></span>);
+  });
+});
+
+describe(<span class="string"><span class="delimiter">"</span><span class="content">GET /secure/:id</span><span class="delimiter">"</span></span>, () =&gt; {
+  test(<span class="string"><span class="delimiter">"</span><span class="content">authorizes only correct users</span><span class="delimiter">"</span></span>, async () =&gt; {
+    const response = await request(app)
+      <span class="comment">// add an authorization header with the token, but go to a different ID than the one stored in the token</span>
+      .get(<span class="">`</span><span class="regexp"><span class="delimiter">/</span><span class="content">users</span><span class="delimiter">/</span></span>secure/<span class="integer">100</span><span class="">`</span>)
+      .set(<span class="string"><span class="delimiter">"</span><span class="content">authorization</span><span class="delimiter">"</span></span>, auth.token);
+    expect(response.statusCode).toBe(<span class="integer">401</span>);
+    expect(response.body.message).toBe(<span class="string"><span class="delimiter">"</span><span class="content">Unauthorized</span><span class="delimiter">"</span></span>);
+  });
+});
+
+describe(<span class="string"><span class="delimiter">"</span><span class="content">GET /secure/:id</span><span class="delimiter">"</span></span>, () =&gt; {
+  test(<span class="string"><span class="delimiter">"</span><span class="content">authorizes only correct users</span><span class="delimiter">"</span></span>, async () =&gt; {
+    const response = await request(app)
+      <span class="comment">// add an authorization header with the token, and go to the same ID as the one stored in the token</span>
+      .get(<span class="">`</span><span class="regexp"><span class="delimiter">/</span><span class="content">users</span><span class="delimiter">/</span></span>secure/<span class="predefined">$</span>{auth.current_user_id}<span class="">`</span>)
+      .set(<span class="string"><span class="delimiter">"</span><span class="content">authorization</span><span class="delimiter">"</span></span>, auth.token);
+    expect(response.statusCode).toBe(<span class="integer">200</span>);
+    expect(response.body.message).toBe(<span class="string"><span class="delimiter">"</span><span class="content">You made it!</span><span class="delimiter">"</span></span>);
+  });
+});
+</pre></div>
+</div>
+
+    </div>
+
+    <p>
+      When you're ready, move on to <a id="next-link" href="https://www.rithmschool.com/courses/intermediate-node-express/api-security-exercises">API Exercise</a>
+    </p>
+
+    <p class="text-center">
+    <a class="apply-now" href="https://www.rithmschool.com/courses/intermediate-node-express/api-security-exercises">Continue</a>
+</p>
+
+  </div>
+  <div class="text-center">
+      <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="../Free%20Intermediate%20Node%20and%20Express%20Course%20_%20Rithm%20School_files/80x15.png"></a><br>
+  </div>
+</div>
+<script src="../Free%20Intermediate%20Node%20and%20Express%20Course%20_%20Rithm%20School_files/online_course_chapter-77a0b35613cd2e7581fd7f4ed2303741b752a474a52b036ed8ae78c201e06001.js"></script>
+<script src="../Free%20Intermediate%20Node%20and%20Express%20Course%20_%20Rithm%20School_files/change_header-613c1217895cf591625bcd911b9b83fd0daba49861c7bf9523138fd8f076fd64.js"></script>
+<script src="../Free%20Intermediate%20Node%20and%20Express%20Course%20_%20Rithm%20School_files/online_course_shared-27e1c62bf9dc9f24b1abb493e3d1bc1dca8b75ce5bff13a91631abe78b40f6f1.js"></script>
+
+</div>
+
+  
+<!-- Chatra {literal} -->
+<script>
+    var countries = ["Australia", "Canada", "United States", "United Kingdom", "Ireland", "New Zealand", "Israel", "Sweden", "Denmark", "Netherlands", "Hong Kong", "Finland", "Austria", "Norway", "Germany","Singapore"]
+    ChatraID = 'B32ypJxDbLRq5RhQ2';
+    ChatraGroupID = 'eXDapncP5vKAcBDr5';
+    var key = "3c90912af13c55003cd9990c1db175ad"
+    // if they are not in the array we cache that in localStorage and noop
+    if(localStorage.getItem("nvc") === "true"){
+    }
+    // if they are in the array just load the Chatra box
+    else if(localStorage.getItem("vc") === "true"){
+      (function(d, w, c) {
+                var n = d.getElementsByTagName('script')[0],
+                    s = d.createElement('script');
+                w[c] = w[c] || function() {
+                    (w[c].q = w[c].q || []).push(arguments);
+                };
+                s.async = true;
+                s.src = (d.location.protocol === 'https:' ? 'https:': 'http:')
+                    + '//call.chatra.io/chatra.js';
+                n.parentNode.insertBefore(s, n);
+            })(document, window, 'Chatra');
+    // otherwise get their location and set them as vc or nvc if they are in the array or not
+    } else {
+       $.getJSON("https://api.ipstack.com/check?access_key=" + key).then(function(data){
+        if(countries.includes(data.country_name)){
+            localStorage.setItem("vc", true)
+            (function(d, w, c) {
+                var n = d.getElementsByTagName('script')[0],
+                    s = d.createElement('script');
+                w[c] = w[c] || function() {
+                    (w[c].q = w[c].q || []).push(arguments);
+                };
+                s.async = true;
+                s.src = (d.location.protocol === 'https:' ? 'https:': 'http:')
+                    + '//call.chatra.io/chatra.js';
+                n.parentNode.insertBefore(s, n);
+            })(document, window, 'Chatra');
+        } else {
+          localStorage.setItem("nvc") === "true"
+        }
+    })
+}
+   
+</script>
+<!-- /Chatra {/literal} -->
+<script>
+window.ChatraSetup = {
+    colors: {
+        buttonText: '#ffffff', // chat button text color
+        buttonBg: '#F86161'    // chat button background color
+    }
+};
+
+// // REMOVED when parallax was added
+// We only want to delay the chat on the homepage
+// so the animation has time to load.
+// if (window.location.pathname === '/') {
+//   Chatra("hide");
+//   setTimeout(function() {
+//     Chatra("show");
+//   }, 2600);
+// }
+</script>
+
+  <footer data-event-name="click_cta" data-label="location" data-event-label="page_bottom">
+  <div class="container">
+    <div class="row">
+        <div class="col-md-3 col-sm-4 text-center">
+            <a style="padding:0;" class="footer-logo" href="https://www.rithmschool.com/">
+              <img class="logo" width="120" height="58" alt="rithm school company logo" title="Rithm School Logo" src="../Free%20Intermediate%20Node%20and%20Express%20Course%20_%20Rithm%20School_files/rithm_logo-f188d2545d88917c033e407f4f87b02e2a3f5cf5dfb60e626787785fa9c13774.svg">
+</a>            <span>
+                <a class="text-muted faq-url" href="mailto:info@rithmschool.com">info@rithmschool.com</a>
+            </span>
+        </div>
+        <div class="col-md-6 col-sm-8">
+          <div class="text-center email_signup_heading">
+              <p data-event-name="click_email_link" class="lead">Interested in meetups, courses and free content?</p>
+              <button name="button" type="submit" class="btn" id="mailing-list" data-event-name="join_mailing_list">Join mailing list</button>
+          </div>
+          <p class="lead text-center thank_you"></p>
+        </div>
+        <div class="col-md-3 col-sm-4 text-center">
+          <ul class="list-inline social-buttons">
+              <li data-event-name="click_cta" data-label="click_social_link" data-event-label="twitter"><a target="_blank" href="https://www.twitter.com/rithmschool"><i class="fa fa-twitter"></i></a>
+              </li>
+              <li data-event-name="click_cta" data-label="click_social_link" data-event-label="facebook"><a target="_blank" href="https://www.facebook.com/rithmschool"><i class="fa fa-facebook"></i></a>
+              </li>
+              <li data-event-name="click_cta" data-label="click_social_link" data-event-label="linkedin"><a target="_blank" href="https://www.linkedin.com/company/rithm-school"><i class="fa fa-linkedin"></i></a>
+              </li>
+          </ul>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-12  text-center">
+          <a class="text-muted" href="https://www.rithmschool.com/privacy">Privacy Policy</a> |
+          <a class="text-muted" href="https://www.rithmschool.com/terms">Terms of Service</a> |
+          <a class="text-muted" href="https://www.rithmschool.com/consumer-resource">Consumer Resource</a>
+          <span class="copyright">© Rithm Inc. 500 Sansome Street Suite 300 San Francisco, CA 94111. All rights reserved. </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+<!-- link that opens popup -->
+<a style="display:none;" class="popup-with-form" href="https://www.rithmschool.com/courses/intermediate-node-express/api-tests-with-jest#unlock-form">Open form</a>
+
+<!-- form itself -->
+<div class="thank_you"></div>
+<div class="container">
+  <form id="unlock-form" class="card mfp-hide white-popup-block">
+<input type="hidden" name="authenticity_token" id="authenticity_token" value="62qiaef5xanJCgJXrxPkLZ1DszLjzeBqq3hj79vmnlaq98BRVFF9WrbLwmmfqPOUUUZH/OzYMMN1eROQwwfu7g==">  <div id="modal-email-known" style="display:none;">
+    <h1 class="text-center">Signed up already? Please enter your email to confirm.</h1>
+    <div class="email-errors text-center"></div>
+    <hr class="modal--bar">
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+        <div class="form-group">
+          <input class="form-control" placeholder="Email" type="email" id="confirm-email-input">
+          <p class="help-block text-danger"></p>
+        </div>
+      </div>
+    </div>
+    <button id="confirm-email" type="submit" class="btn btn-xl">Sign In</button>
+    <div class="text-center">
+      <a href="javascript:void(0)" style="margin-top:-20px; display:block;" class="modal-go-back">Go Back</a>
+    </div>
+  </div>
+  <div id="modal-first-part" class="row">
+    <h1 class="text-center">Get 200+ hours of free content, tutorials, and screencasts</h1>
+      <div class="col-sm-offset-2 col-sm-8">
+        <hr class="modal--bar">
+          <h5 class="text-center">Share your email, and we'll give you a confirmation code to unlock all of our materials. No spam, we promise.</h5>
+          <div class="errors text-center"></div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <input autofocus="autofocus" required="required" class="form-control" placeholder="First Name" type="text" name="first" id="first">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <input required="required" class="form-control" placeholder="Last Name" type="last" name="last" id="last">
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+            </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="form-group">
+                <input class="form-control" placeholder="Email Address" required="required" type="email" name="email" id="email">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="next-button btn btn-xl">Next</button>
+          <a class="text-center email-known" href="javascript:void(0)">Already signed up?</a>
+    </div>
+  </div>
+    <div id="modal-second-part" style="display:none;">
+      <h1 class="text-center">Tell us more about yourself</h1>
+        <div class="col-sm-offset-2 col-sm-8">
+          <hr class="modal--bar">
+          <h5 class="text-center">Please answer these two questions to help us build the perfect Rithm experience for you.</h5>
+          <div class="errors text-center"></div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="form-group">
+            How would you define your skill as a developer?
+            <label for="Beginner"><input type="radio" class="radio" name="skill" id="Beginner" value="Beginner" required="" checked=""> Beginner</label>
+            <label for="Intermediate"><input type="radio" class="radio" name="skill" id="Intermediate" value="Intermediate">Intermediate </label>
+            <label for="Advanced"><input type="radio" class="radio" name="skill" id="Advanced" value="Advanced">Advanced </label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="form-group">
+            Would you like to learn more about Rithm School's in-person courses and how to apply?
+            <label for="yes"><input type="radio" class="radio" name="learn" id="yes" value="Yes" required="" checked=""> Yes</label>
+            <label for="no"><input type="radio" class="radio" name="learn" id="no" value="No"> No</label>
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-xl">Get Content</button>
+    </div>
+  </div>
+      <div id="modal-third-part" style="display:none;">
+        <h1 class="text-center"></h1>
+          <div class="col-sm-offset-2 col-sm-8">
+            <hr class="modal--bar">
+            <h5 class="text-center"></h5>
+          </div>
+      </div>
+  </form>
+  </div>
+
+
+
+
+
+<!-- Google Code for Purchase Conversion Page -->
+
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>

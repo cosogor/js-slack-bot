@@ -14,12 +14,16 @@
     "@babel/preset-env": "^7.18.10",
     "@jest/globals": "^28.1.1",
     "@slack/bolt": "^3.11.1",
+    "@waxio/waxjs": "^1.3.0",
     "babel": "^6.23.0",
     "chromedriver": "^108.0.0",
-    "jest": "^28.1.3",
+    "eosjs": "^22.1.0",
     "excel4node": "^1.7.2",
-    "supertest": "^6.2.3",
-    "selenium-webdriver": "^4.4.0"
+    "jest": "^28.1.3",
+    "node-fetch": "^2.6.9",
+    "requests": "^0.3.0",
+    "selenium-webdriver": "^4.4.0",
+    "supertest": "^6.2.3"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.28.1",
@@ -37,7 +41,6 @@
     "prettier": "2.7.1",
     "typescript": "^4.7.4"
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "license": "MIT"
 }

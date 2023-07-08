@@ -1,0 +1,67 @@
+{
+  "rows": [
+    {
+      "data": {
+        "rates": [
+          {
+            "key": "Abundant",
+            "value": "88.79999999999999716"
+          },
+          {
+            "key": "Common",
+            "value": "9.40000000000000036"
+          },
+          {
+            "key": "Epic",
+            "value": "0.31000000000000000"
+          },
+          {
+            "key": "Legend\nary",
+            "value": "0.06000000000000000"
+          },
+          {
+            "key": "Mythical",
+            "value": "0.02000000000000000"
+          },
+          {
+            "key": "Rare",
+            "value": "1.39999999999999991"
+          }
+        ],
+        "pool_buckets": [
+          {
+            "key": "Abundant",
+            "value": "0.2145 TL\nM"
+          },
+          {
+            "key": "Common",
+            "value": "0.3278 TLM"
+          },
+          {
+            "key": "Epic",
+            "value": "0.8432 TLM"
+          },
+          {
+            "key": "Legendary",
+            "value": "0.8974 TLM"
+          },
+          {
+            "key": "Mythic",
+            "value": "0.0000 TLM"
+          },
+          {
+            "key": "Mythical",
+            "value": "0.4693 TLM"
+          },
+          {
+            "key": "Rare",
+            "value": "0.8542 TLM"
+          }
+        ]
+      },
+      "payer": "m.federation"
+    }
+  ],
+  "more": false,
+  "next_key": ""
+}
