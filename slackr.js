@@ -1,7 +1,10 @@
 const { App } = require('@slack/bolt')
+const settings = require('./settings')
 let OAUTH_TOKEN = ''
 OAUTH_TOKEN = process.env.OAUTH_TOKEN
-
+if (OAUTH_TOKEN == undefined) {
+  OAUTH_TOKEN = settings.OAUTH_TOKEN
+}
 // let SECRET = '26064fcda0b040deab5358c70c1e7f9e'
 let SECRET = 'd42b163719c794a3b8165c5e669b1494'
 // let CHANNEL = 'api-monitor'
@@ -70,6 +73,14 @@ async function sendMessageParams(OAUTH_TOKEN_ = OAUTH_TOKEN, CHANNEL_ = CHANNEL,
 // sendMessage('TEST');
 async function sendMessage(message) {
   await sendMessageParams(undefined, undefined, message)
+}
+
+async function main() {
+  await sendMessage('ping')
+}
+
+if (require.main === module) {
+  main()
 }
 
 module.exports = {

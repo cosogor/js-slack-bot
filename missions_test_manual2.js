@@ -11,7 +11,7 @@ const fs = require('fs')
 const path = require('path')
 const webdriver = require('selenium-webdriver')
 require('chromedriver')
-const { sendMessage } = require('../slackr')
+const { sendMessage } = require('./slackr')
 
 // test for test fail
 // test("Error check", () => {
@@ -35,7 +35,7 @@ missionsJson = JSON.parse(missionsJson)
 
 let missionsTableSeason1 =
   '' +
-  //    'Rarity\tMission Type\tMission Title\tMission Description\tReward (POT)\tSpaceship Lease Cost\tBoarding length [hours]\tBoarding length [seconds]\tDeployment Intervals in Hours\tDeployment interval in Seconds\tStart time (from genesis) in hours\tStart time (from genesis) in secs\tDuration\tDuration Unit\tDuration in seconds\tNFT Json Hash\tNFT Image Hash\tDeployed Per 30 Days\tTotal TLM Per Month (POT * Deployment Frequency)\tNFT JSON Link\tNFT Image Link\n' +
+  //'Rarity\tMission Type\tMission Title\tMission Description\tReward (POT)\tSpaceship Lease Cost\tBoarding length [hours]\tBoarding length [seconds]\tDeployment Intervals in Hours\tDeployment interval in Seconds\tStart time (from genesis) in hours\tStart time (from genesis) in secs\tDuration\tDuration Unit\tDuration in seconds\tNFT Json Hash\tNFT Image Hash\tDeployed Per 30 Days\tTotal TLM Per Month (POT * Deployment Frequency)\tNFT JSON Link\tNFT Image Link\n' +
   'Common\tRecovery\tRetrieve Ledger\tImportant keys have been stolen by rebel forces. Recover a ledger device from a rebel stronghold without anyone realising\t15,000\t40\t4\t14400\t23\t82800\t0\t0\t1\tweeks\t604800\tQmPPZwSYjGgJKD3zARGTLUVCshdjSBj1mVBuRfodTwvSat\tQma4cHTj2MW4DVCNXTicc62RfG75atMKGUrLt4TyL8pi69\t31.30434783\t469,565\thttps://alienworlds.mypinata.cloud/ipfs/QmPPZwSYjGgJKD3zARGTLUVCshdjSBj1mVBuRfodTwvSat\thttps://alienworlds.mypinata.cloud/ipfs/Qma4cHTj2MW4DVCNXTicc62RfG75atMKGUrLt4TyL8pi69\n' +
   'Common\tExplore\tReptilian Peace\tA breakaway group of Reptilians have set up a rogue cell in a uncharted region. Examine the situation and make sure the Reptilian Diplomat is guarded on their mission of peace\t13,000\t40\t4\t14400\t27\t97200\t10\t36000\t1\tweeks\t604800\tQmaX32NUecni5qEPPCfoT1iQQHRdm7XMEKRHR8hNSM2dMK\tQmPv7FfixkyTmVHSvSJo2v4nsCgP3yQRBdk4diitgV3tPj\t26.66666667\t346,667\thttps://alienworlds.mypinata.cloud/ipfs/QmaX32NUecni5qEPPCfoT1iQQHRdm7XMEKRHR8hNSM2dMK\thttps://alienworlds.mypinata.cloud/ipfs/QmPv7FfixkyTmVHSvSJo2v4nsCgP3yQRBdk4diitgV3tPj\n' +
   'Rare\tCourier\tInstall the Admiral\tLeaders are always a target - Transport a Federation admiral securely to the new planet government space station\t18,000\t200\t6\t21600\t50\t180000\t5\t18000\t2\tweeks\t1209600\tQmWuzETbQwb43kibxTZEUrTbiH4inGzSN9ECBtN16XnbRf\tQmaQhWW5CQ2Zau8AwoZLNGFV7mDg1tzUQJ5Mup59jiTd1X\t14.4\t259,200\thttps://alienworlds.mypinata.cloud/ipfs/QmWuzETbQwb43kibxTZEUrTbiH4inGzSN9ECBtN16XnbRf\thttps://alienworlds.mypinata.cloud/ipfs/QmaQhWW5CQ2Zau8AwoZLNGFV7mDg1tzUQJ5Mup59jiTd1X\n' +
@@ -47,7 +47,7 @@ let missionsTableSeason1 =
 
 let missionsTableSeason2 =
   '' +
-  //    'Rarity\tMission Type\tMission Title\tMission Description\tReward (POT)\tSpaceship Lease Cost\tBoarding length [hours]\tBoarding length [seconds]\tDeployment Intervals in Hours\tDeployment interval in Seconds\tStart time (from genesis) in hours\tStart time (from genesis) in secs\tDuration Weeks\tDuration Unit\tDuration in seconds\tNFT Json Hash\tNFT Image Hash\tDeployed Per 30 Days\tTotal TLM Per Month (POT * Deployment Frequency)\n' +
+  //'Rarity\tMission Type\tMission Title\tMission Description\tReward (POT)\tSpaceship Lease Cost\tBoarding length [hours]\tBoarding length [seconds]\tDeployment Intervals in Hours\tDeployment interval in Seconds\tStart time (from genesis) in hours\tStart time (from genesis) in secs\tDuration Weeks\tDuration Unit\tDuration in seconds\tNFT Json Hash\tNFT Image Hash\tDeployed Per 30 Days\tTotal TLM Per Month (POT * Deployment Frequency)\n' +
   'Common\tCourier\tCourier Run\tThe Federation is cracking down on high gas fees to help new business prosper. Transport a high gas fee miner to a rehabilitation station.\t15,000\t40\t4\t14400\t23\t82800\t0\t0\t1\tweeks\t604800\tQmeixndncUVp435QZeEWipHCHgAVbjeJpZ8Ja5MjcaTGe5\tQmV5udo5Aaxv5tCBf4D7hbAqnf9TRqbptyfFnKFTmw1Pdw\t31.30434783\t469,565\n' +
   'Common\tSupply\tSupply Request\tManatite helps with Trilium Extraction in difficult to reach areas. Deliver supplies of radioactive Manatite to Planet Binance.\t13,000\t40\t4\t14400\t27\t97200\t10\t36000\t1\tweeks\t604800\tQmWsDUKyLe8WPGxsafzL3TUSN5NxrfjvHggd5CUBhLMP8f\tQmNRavf6rksp6757kq86eHiZkqgXbmy8PiwnZ3uXNqycBY\t26.66666667\t346,667\n' +
   'Rare\tScouting\tPlanetary Scouting\tMany strange and unusual mysteries await near Planet Binance. Send your research ships to gather data and samples.\t18,000\t200\t6\t21600\t50\t180000\t5\t18000\t2\tweeks\t1209600\tQmQFS9wgVdJHD3FqXt26zSpvWhQAtwy1Fr7Xx2qKsQtWw4\tQmPTETK6ys5CtW5WcncnCEtqV2qx5ZdM1RNMmrHxz77oCH\t14.4\t259,200\n' +
@@ -170,24 +170,24 @@ function missionTypesRevert(missionTypes) {
   return missionTypesReverted
 }
 
-function validateMissionsJSONvsXLS(missionsJson, missionsXlsArray, missionTypes) {
+async function validateMissionsJSONvsXLS(missionsJson, missionsXlsArray, missionTypes) {
   console.log('STARTED: validateMissionsJSONvsXLS')
   let missionTypesReverted = missionTypesRevert(missionTypes)
   for (let missionJson of missionsJson.data) {
     for (let i = 0; i < missionsXlsArray.length; i++) {
-      let xlsArrayElement = missionsXlsArray[i]
+      let xlsArrayMission = missionsXlsArray[i]
       // find related MissionTitle in XLS
-      if (xlsArrayElement['MissionTitle'] === missionJson.attributes.name) {
+      if (xlsArrayMission['MissionTitle'] === missionJson.attributes.name) {
         console.log('Checking started mission id: ', [missionJson.id])
         console.log('Mission Title: ', [missionJson.attributes.name], 'Mission Type: ', [
           missionTypesReverted[missionJson.attributes.missionType],
         ])
         console.log('missionJson:\n', missionJson)
         // comparing MissionTitle just for logs
-        assertEqual(missionJson.attributes.name, xlsArrayElement['MissionTitle'], missionJson.id)
+        assertEqual(missionJson.attributes.name, xlsArrayMission['MissionTitle'], missionJson.id)
         assertEqual(
           missionTypesReverted[missionJson.attributes.missionType],
-          xlsArrayElement['MissionType'],
+          xlsArrayMission['MissionType'],
           missionJson.id
         )
         assertEqual(
@@ -215,9 +215,9 @@ function validateMissionsJSONvsXLS(missionsJson, missionsXlsArray, missionTypes)
           xlsArrayMission['NFTJsonHash'],
           missionJson.id
         )
-        let NFTJson = await getImageUrlFromMissionJson(xlsArrayElement['NFTJSONLink'])
+        let NFTJson = await getImageUrlFromMissionJson(xlsArrayMission['NFTJSONLink'])
         console.log('NFTJson:\n', NFTJson)
-        assertEqual(NFTJson.attributes[0].value, xlsArrayElement['Rarity'], missionJson.id)
+        assertEqual(NFTJson.attributes[0].value, xlsArrayMission['Rarity'], missionJson.id)
         console.log('Checking finished mission id: ', [missionJson.id] + '\n\n')
         break
       }
@@ -271,10 +271,14 @@ async function validateMissionsXLSCards(missionsXlsArray) {
   }
 }
 
-function assertFilesEqual(file1, file2, mission) {
-  let data1 = fs.readFileSync(file1).toString('hex')
-  let data2 = fs.readFileSync(file2).toString('hex')
-
+function assertFilesEqual(estFile, actFile, mission) {
+  let data1 = fs.readFileSync(estFile).toString('hex')
+  let data2 = NaN
+  try {
+    data2 = fs.readFileSync(actFile).toString('hex')
+  } catch (e) {
+    console.error(e.message)
+  }
   if (data1 !== data2) {
     // console.log(data1 + ' !==\n' + data2)
     console.log('Mission NOK: ' + mission)
@@ -283,8 +287,6 @@ function assertFilesEqual(file1, file2, mission) {
     console.log(estFile + ' ===\n' + actFile)
     console.log('Mission OK: ' + mission)
   }
-  // uncomment to break test on error
-  // expect(data1).toEqual(data2);
 }
 
 function mkdir(dirName) {
@@ -364,24 +366,24 @@ async function validateMissionsXLSNFTCards(missionsXlsArray) {
 
     mkdir(actualResultNFTDirectory + '/' + xlsArrayMission['MissionTitle'])
     await getMissionNftImage(
-        imageUrl,
-        actualResultNFTDirectory + '/' + xlsArrayMission['MissionTitle'],
-        xlsArrayMission['NFTImageHash']
+      imageUrl,
+      actualResultNFTDirectory + '/' + xlsArrayMission['MissionTitle'],
+      xlsArrayMission['NFTImageHash']
     )
     assertFilesEqual(
-        estimatedResultNFTDirectory +
+      estimatedResultNFTDirectory +
         '/' +
         xlsArrayMission['MissionTitle'] +
         '/' +
         xlsArrayMission['NFTImageHash'] +
         '.png',
-        actualResultNFTDirectory +
+      actualResultNFTDirectory +
         '/' +
         xlsArrayMission['MissionTitle'] +
         '/' +
         xlsArrayMission['NFTImageHash'] +
         '.png',
-        xlsArrayMission['MissionTitle']
+      xlsArrayMission['MissionTitle']
     )
     console.log('Checking finished: ' + xlsArrayMission['MissionTitle'] + '\n\n')
   }
@@ -400,25 +402,13 @@ async function validateMissionsTest() {
   console.log('TOTAL ERRORS: ' + errors)
   //    console.trace();
 }
+// console.log('\x1b[32m%s\x1b[0m', 'Текст зеленым цветом')
+// console.log('\x1b[31m%s\x1b[0m', 'Текст красным цветом')
+// console.log('\x1b[34m%s\x1b[0m', 'Текст синим цветом')
+// console.log('\x1b[33m%s\x1b[0m', 'Текст желтым цветом')
+// console.log('\x1b[32m\x1b[40m%s\x1b[0m', 'Текст зеленым цветом на черном фоне')
+// console.log('\x1b[31m\x1b[40m%s\x1b[0m', 'Текст красным цветом на черном фоне')
+// console.log('\x1b[34m\x1b[40m%s\x1b[0m', 'Текст синим цветом на черном фоне')
+// console.log('\x1b[33m\x1b[40m%s\x1b[0m', 'Текст желтым цветом на черном фоне')
 
 validateMissionsTest()
-jest.setTimeout(600000)
-
-test('Validate Missions Parameters', async () => {
-  await sendMessage('Validate Missions Parameters TEST STARTED.')
-  let missionsJson = await getMissionsJson(missionsURL)
-  let missionsArray = parseXLSSrcDataToArray(missionsTable)
-  await validateMissionsJSONvsXLS(missionsJson, missionsArray, missionTypes)
-  console.log('ERRORS: ' + errors)
-  expect(errors).toBe(0)
-  await sendMessage('Validate Missions Parameters TEST FINISHED. ERRORS: ' + errors)
-})
-
-test('Validate Missions NFT', async () => {
-  await sendMessage('Validate Missions NFT TEST STARTED.')
-  let missionsArray = parseXLSSrcDataToArray(missionsTable)
-  await validateMissionsXLSCards(missionsArray)
-  console.log('ERRORS: ' + errors)
-  await sendMessage('Validate Missions NFT TEST FINISHED. ERRORS: ' + errors)
-  expect(errors).toBe(0)
-})

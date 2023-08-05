@@ -8,9 +8,15 @@ const { App } = require('@slack/bolt')
 //https://wax.api.atomicassets.io/atomicassets/v1/templates?page=1&limit=100&ids=19558%2C19583%2C19632%2C19591%2C19650%2C19613%2C19557%2C19651%2C19652
 let OAUTH_TOKEN = 'xoxb-3645648434194-3631173771815-wTmB4swywuLvpAR9YmmXilnr'
 let SECRET = '26064fcda0b040deab5358c70c1e7f9e'
-let CHANNEL = 'api-monitor'
-// let CHANNEL_ID = 'C03JZKMAEPL';
+// let CHANNEL = 'api-monitor'
+//let CHANNEL_ID = 'C03JZKMAEPL'
+
+//let CHANNEL = 'test-for-slack-bots'
+let CHANNEL = 'qa-bots'
 // let API1_HOST = '';
+const settings = require('./settings')
+OAUTH_TOKEN = settings.OAUTH_TOKEN
+SECRET = settings.SECRET
 
 const app = new App({
   token: OAUTH_TOKEN,
@@ -62,7 +68,12 @@ async function findChannel(channelName) {
       // The token you used to initialize your app
       token: OAUTH_TOKEN,
     })
-
+    if (channelName === 'qa-bots') {
+      // for hidden channel qa-bots in dacoco
+      let channelId = 'C03VCUMMKS5'
+      console.log('Found channel ID: ' + channelId)
+      return channelId
+    }
     for (const channel of result.channels) {
       if (channel.name === channelName) {
         let channelId = channel.id
@@ -89,7 +100,10 @@ async function findChannel(channelName) {
 //     console.log(result)
 // })();
 
-let baseUrl2 = 'http://135.181.217.156/v1/alienworlds/asset?id=1099624236152'
+//let baseUrl2 = 'http://135.181.217.156/v1/alienworlds/asset?id=1099624236152'
+// prod
+let baseUrl2 = 'https://api.alienworlds.io/v1/alienworlds/asset?id=1099624236152'
+
 function sleep(microsec) {
   let e = new Date().getTime() + microsec
   while (new Date().getTime() <= e) {}
@@ -97,7 +111,7 @@ function sleep(microsec) {
 
 async function getAssetId() {
   console.log('TEST STARTED 0001')
-  // await sendMessage(OAUTH_TOKEN, CHANNEL, 'TEST STARTED1');
+  await sendMessage(OAUTH_TOKEN, CHANNEL, 'TEST STARTED1')
   for (i = 1; i <= 5; i++) {
     let date1 = Date.now()
     const response = await request(baseUrl2).get('')
@@ -107,7 +121,7 @@ async function getAssetId() {
       CHANNEL,
       'DELAY: ' + (date2 - date1) + '\nCODE: ' + response.statusCode + '\n' + baseUrl2
     )
-    sleep(60000)
+    sleep(1000)
   }
   console.log('TEST FINISHED 0001')
   await sendMessage(OAUTH_TOKEN, CHANNEL, 'TEST FINISHED 0001')
