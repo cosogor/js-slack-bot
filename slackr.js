@@ -72,6 +72,7 @@ async function sendMessageParams(OAUTH_TOKEN_ = OAUTH_TOKEN, CHANNEL_ = CHANNEL,
 
 // sendMessage('TEST');
 async function sendMessage(message) {
+  return
   await sendMessageParams(undefined, undefined, message)
 }
 

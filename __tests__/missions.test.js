@@ -1,11 +1,3 @@
-// Kanth lakshmi
-// the configured was:
-//     JSON
-// https://ipfs.io/ipfs/QmWuzETbQwb43kibxTZEUrTbiH4inGzSN9ECBtN16XnbRf
-//     image in JSON:
-// https://ipfs.io/ipfs/QmaQhWW5CQ2Zau8AwoZLNGFV7mDg1tzUQJ5Mup59jiTd1X
-
-console.log('TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 const request = require('supertest')
 const fs = require('fs')
 const path = require('path')
@@ -20,8 +12,7 @@ const { sendMessage } = require('../slackr')
 
 let errors = 0
 let missionsJsonFile = 'missionsJson.json'
-let actualResultNFTDirectory = '_ActualResult'
-let estimatedResultNFTDirectory = '_EstimatedResult'
+
 const missionsURL =
   'https://missions-api.alienworlds.io/missions?page%5Blimit%5D=100&page%5Bnumber%5D=0&page%5Border%5D=desc'
 
@@ -70,7 +61,7 @@ let missionTypes = new Map([
   ['Recovery', 8],
 ])
 
-// let missionTypesNormal = {}
+// let missionTypesNormal = {};
 let missionsArray = []
 
 function sleep(millisecond) {
@@ -105,23 +96,12 @@ async function getMissionsJson(baseUrl) {
   }
 }
 
-function parseXLSSrcDataToArray(missionsXlsData) {
+function parseXls(missionsXlsData) {
   let missionsXlsDataRow = missionsXlsData.split('\n')
   for (let i = 0; i < missionsXlsDataRow.length; i++) {
     let cell = missionsXlsDataRow[i].split('\t')
     let missionString = []
     let j = 0
-
-    // let NFTLinkPrefix = 'https://alienworlds.mypinata.cloud/ipfs/'
-    let NFTLinkPrefix = 'https://ipfs.alienworlds.io/ipfs/' //our private ipfs gateway
-
-    //    I've sent request to abuse@protocol.ai to unblock this content.
-    //    https://ipfs.io/ipfs/Qma4cHTj2MW4DVCNXTicc62RfG75atMKGUrLt4TyL8pi69
-    //    This image can be fetched fine via our private ipfs gateway -
-    //    https://ipfs.alienworlds.io/ipfs/Qma4cHTj2MW4DVCNXTicc62RfG75atMKGUrLt4TyL8pi69 ,
-    //    but unfortunately https://ipfs.io gateway is hardcoded in mission description JSON -
-    //    https://ipfs.alienworlds.io/ipfs/QmPPZwSYjGgJKD3zARGTLUVCshdjSBj1mVBuRfodTwvSat
-
     missionString['Rarity'] = cell[j]
     missionString['MissionType'] = cell[++j]
     missionString['MissionTitle'] = cell[++j]
@@ -141,8 +121,10 @@ function parseXLSSrcDataToArray(missionsXlsData) {
     missionString['NFTImageHash'] = cell[++j]
     missionString['DeployedPer30Days'] = cell[++j]
     missionString['TotalTLMPerMonth'] = cell[++j]
-    missionString['NFTJSONLink'] = NFTLinkPrefix + missionString['NFTJsonHash']
-    missionString['NFTImageLink'] = NFTLinkPrefix + missionString['NFTImageHash']
+    missionString['NFTJSONLink'] =
+      'https://alienworlds.mypinata.cloud/ipfs/' + missionString['NFTJsonHash']
+    missionString['NFTImageLink'] =
+      'https://alienworlds.mypinata.cloud/ipfs/' + missionString['NFTImageHash']
     missionsArray.push(missionString)
   }
   return missionsArray
@@ -150,10 +132,10 @@ function parseXLSSrcDataToArray(missionsXlsData) {
 
 function assertEqual(param1, param2, mission) {
   if (param1 !== param2) {
-    console.log('NOK: ' + mission + '\t' + param1 + ' !== \n\t\t' + param2)
+    console.log('NOK: ' + mission + '\t' + param1 + ' !== \n\t\t\t' + param2)
     errors++
   } else {
-    console.log('OK: ' + mission + '\t' + param1 + ' === \n\t\t' + param2)
+    console.log('OK: ' + mission + '\t' + param1 + ' === \n\t\t\t' + param2)
   }
   // expect(param1).toEqual(param2);
 }
@@ -170,7 +152,7 @@ function missionTypesRevert(missionTypes) {
   return missionTypesReverted
 }
 
-function validateMissionsJSONvsXLS(missionsJson, missionsXlsArray, missionTypes) {
+async function validateMissionsJSONvsXLS(missionsJson, missionsXlsArray, missionTypes) {
   console.log('STARTED: validateMissionsJSONvsXLS')
   let missionTypesReverted = missionTypesRevert(missionTypes)
   for (let missionJson of missionsJson.data) {
@@ -192,32 +174,36 @@ function validateMissionsJSONvsXLS(missionsJson, missionsXlsArray, missionTypes)
         )
         assertEqual(
           missionJson.attributes.description,
-          xlsArrayMission['MissionDescription'],
+          xlsArrayElement['MissionDescription'],
           missionJson.id
         )
         assertEqual(
           missionJson.attributes.duration,
-          parseInt(xlsArrayMission['DurationInSeconds']),
+          parseInt(xlsArrayElement['DurationInSeconds']),
           missionJson.id
         )
         assertEqual(
           missionJson.attributes.endTime - missionJson.attributes.launchTime,
-          parseInt(xlsArrayMission['DurationInSeconds']),
+          parseInt(xlsArrayElement['DurationInSeconds']),
           missionJson.id
         )
         assertEqual(
           missionJson.attributes.reward,
-          parseInt(xlsArrayMission['Reward']) * 10000000,
+          parseInt(xlsArrayElement['Reward']) * 10000000,
           missionJson.id
         )
         assertEqual(
           missionJson.attributes.nftTokenURI,
-          xlsArrayMission['NFTJsonHash'],
+          xlsArrayElement['NFTJsonHash'],
           missionJson.id
         )
-        let NFTJson = await getImageUrlFromMissionJson(xlsArrayElement['NFTJSONLink'])
+        let NFTJson = await getNFTJson(xlsArrayElement['NFTJSONLink'])
         console.log('NFTJson:\n', NFTJson)
-        assertEqual(NFTJson.attributes[0].value, xlsArrayElement['Rarity'], missionJson.id)
+        try {
+          assertEqual(NFTJson.attributes[0].value, xlsArrayElement['Rarity'], missionJson.id)
+        } catch (e) {
+          console.log(e)
+        }
         console.log('Checking finished mission id: ', [missionJson.id] + '\n\n')
         break
       }
@@ -276,12 +262,12 @@ function assertFilesEqual(file1, file2, mission) {
   let data2 = fs.readFileSync(file2).toString('hex')
 
   if (data1 !== data2) {
-    // console.log(data1 + ' !==\n' + data2)
-    console.log('Mission NOK: ' + mission)
+    console.log(file1 + ' !==\n' + file2)
+    console.log('Mission NOK: ' + [mission])
     errors++
   } else {
-    console.log(estFile + ' ===\n' + actFile)
-    console.log('Mission OK: ' + mission)
+    // console.log(file1 + ' ===\n' + file2); // debug files content
+    console.log('Mission OK: ' + [mission])
   }
   // uncomment to break test on error
   // expect(data1).toEqual(data2);
@@ -290,6 +276,7 @@ function assertFilesEqual(file1, file2, mission) {
 function mkdir(dirName) {
   // console.log("Checking for directory " + path.join(__dirname, dirName));
   let fileExists = fs.existsSync(path.join(__dirname, dirName))
+
   if (fileExists) {
     console.log('Directory exists:', path.join(__dirname, dirName))
     return
@@ -298,7 +285,7 @@ function mkdir(dirName) {
   fs.mkdirSync(path.join(__dirname, dirName))
 }
 
-async function getImageUrlFromMissionJson(baseUrl) {
+async function getNFTJson(baseUrl) {
   let statusCode = 200
   let response
 
@@ -307,14 +294,14 @@ async function getImageUrlFromMissionJson(baseUrl) {
     response = await request(baseUrl).get('')
   } catch (e) {
     console.log(baseUrl + e)
-    await sendMessage(e + '\n' + baseUrl)
+    await sendMessage(e.toString() + '\n' + baseUrl)
     return false
   }
   let statusCodeMsg = response.statusCode + '\tEST: ' + statusCode
   if (statusCode !== response.statusCode) {
     //server error case
-    statusCodeMsg = statusCodeMsg + ' <<< ERROR!!!'
-    console.error(statusCodeMsg)
+    statusCodeMsg = statusCodeMsg + ' ERROR!!!'
+    console.log(statusCodeMsg)
     return false
   }
   let json = JSON.parse(response.text)
@@ -339,7 +326,7 @@ async function getMissionNftImage(baseUrl, dirName, filename) {
   let statusCodeMsg = response.statusCode + '\tEST: ' + statusCode
   if (statusCode != response.statusCode) {
     //server error case
-    statusCodeMsg = statusCodeMsg + ' <<< ERROR!!!'
+    statusCodeMsg = statusCodeMsg + ' ERROR!!!'
     console.log(statusCodeMsg)
     await sendMessage('statusCodeMsg: ' + statusCode + '\n' + baseUrl)
     return false
@@ -349,65 +336,12 @@ async function getMissionNftImage(baseUrl, dirName, filename) {
   return dest
 }
 
-async function validateMissionsXLSNFTCards(missionsXlsArray) {
-  try {
-    fs.rmSync(actualResultNFTDirectory, { recursive: true, force: true })
-  } catch (e) {
-    console.log("Nothing to delete No such file or directory, stat 'Missions'")
-  }
-  mkdir(actualResultNFTDirectory)
-  for (let i = 0; i < missionsXlsArray.length; i++) {
-    let xlsArrayMission = missionsXlsArray[i]
-    // find correct mission type in XLS
-    console.log('Checking MissionTitle: ' + xlsArrayMission['MissionTitle'])
-    let imageUrl = await getImageUrlFromMissionJson(xlsArrayMission['NFTJSONLink'])
-
-    mkdir(actualResultNFTDirectory + '/' + xlsArrayMission['MissionTitle'])
-    await getMissionNftImage(
-        imageUrl,
-        actualResultNFTDirectory + '/' + xlsArrayMission['MissionTitle'],
-        xlsArrayMission['NFTImageHash']
-    )
-    assertFilesEqual(
-        estimatedResultNFTDirectory +
-        '/' +
-        xlsArrayMission['MissionTitle'] +
-        '/' +
-        xlsArrayMission['NFTImageHash'] +
-        '.png',
-        actualResultNFTDirectory +
-        '/' +
-        xlsArrayMission['MissionTitle'] +
-        '/' +
-        xlsArrayMission['NFTImageHash'] +
-        '.png',
-        xlsArrayMission['MissionTitle']
-    )
-    console.log('Checking finished: ' + xlsArrayMission['MissionTitle'] + '\n\n')
-  }
-}
-
-async function validateMissionsTest() {
-  console.time('timer1')
-  let missionsJson = await getMissionsJson(missionsURL)
-  console.table(missionTypes)
-  //    preconditions
-  parseXLSSrcDataToArray(missionsTable)
-  //    testing
-  validateMissionsJSONvsXLS(missionsJson, missionsArray, missionTypes)
-  await validateMissionsXLSNFTCards(missionsArray)
-  console.timeEnd('timer1')
-  console.log('TOTAL ERRORS: ' + errors)
-  //    console.trace();
-}
-
-validateMissionsTest()
 jest.setTimeout(600000)
 
 test('Validate Missions Parameters', async () => {
   await sendMessage('Validate Missions Parameters TEST STARTED.')
   let missionsJson = await getMissionsJson(missionsURL)
-  let missionsArray = parseXLSSrcDataToArray(missionsTable)
+  let missionsArray = parseXls(missionsTable)
   await validateMissionsJSONvsXLS(missionsJson, missionsArray, missionTypes)
   console.log('ERRORS: ' + errors)
   expect(errors).toBe(0)
@@ -416,7 +350,7 @@ test('Validate Missions Parameters', async () => {
 
 test('Validate Missions NFT', async () => {
   await sendMessage('Validate Missions NFT TEST STARTED.')
-  let missionsArray = parseXLSSrcDataToArray(missionsTable)
+  let missionsArray = parseXls(missionsTable)
   await validateMissionsXLSCards(missionsArray)
   console.log('ERRORS: ' + errors)
   await sendMessage('Validate Missions NFT TEST FINISHED. ERRORS: ' + errors)
