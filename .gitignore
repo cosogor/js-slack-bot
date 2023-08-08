@@ -30,3 +30,4 @@ yarn-debug.log*
 yarn-error.log*
 /__tests__/ActResult/
 /_ActualResult/
+/__tests__/_ActualResult/
