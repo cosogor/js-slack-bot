@@ -314,7 +314,7 @@ async function getMissionNftImage(baseUrl, dirName, filename) {
   return dest
 }
 
-async function validateMissionsXLSNFTCards_J1(missionsXlsArray) {
+async function validateMissionsXLSNFTCards(missionsXlsArray) {
   let actResultDir = actualResultNFTDirectory
   let estResultDir = estimatedResultNFTDirectory
   try {
@@ -357,95 +357,6 @@ async function validateMissionsXLSNFTCards_J1(missionsXlsArray) {
   }
 }
 
-async function validateMissionsXLSNFTCards_J(missionsXlsArray) {
-  let actResultDir = actualResultNFTDirectory
-  let estResultDir = estimatedResultNFTDirectory
-  try {
-    fs.rmSync(path.join(__dirname, actResultDir), { recursive: true, force: true })
-  } catch (e) {
-    console.log('Nothing to delete No such file or directory' + actResultDir)
-  }
-  mkdir(actResultDir)
-  for (let i = 0; i < missionsXlsArray.length; i++) {
-    let xlsArrayMission = missionsXlsArray[i]
-    // find correct mission type in XLS
-    console.log('Checking MissionTitle: ' + xlsArrayMission['MissionTitle'])
-    let imageUrl = await getImageUrlFromMissionJson(xlsArrayMission['NFTJSONLink'])
-    mkdir(path.join(actResultDir, xlsArrayMission['MissionTitle']))
-    await getMissionNftImage(
-      imageUrl,
-      actResultDir + '/' + xlsArrayMission['MissionTitle'],
-      xlsArrayMission['NFTImageHash']
-    )
-    assertFilesEqual(
-      __dirname +
-        '/' +
-        actResultDir +
-        '/' +
-        xlsArrayMission['MissionTitle'] +
-        '/' +
-        xlsArrayMission['NFTImageHash'] +
-        '.png',
-      __dirname +
-        '/' +
-        estResultDir +
-        '/' +
-        xlsArrayMission['MissionTitle'] +
-        '/' +
-        xlsArrayMission['NFTImageHash'] +
-        '.png',
-      xlsArrayMission['MissionTitle']
-    )
-    // await sendMessage([xlsArrayMission['MissionTitle']] + 'NFT Image Checked: ')
-    // sleep(5000)
-    // await sendMessage(missionJson.image)
-    console.log('Checking finished: ' + xlsArrayMission['MissionTitle'] + '\n\n')
-  }
-}
-
-async function validateMissionsXLSNFTCards_M(missionsXlsArray) {
-  let actResultDir = actualResultNFTDirectory
-  let estResultDir = estimatedResultNFTDirectory
-  try {
-    fs.rmSync(actResultDir, { recursive: true, force: true })
-  } catch (e) {
-    console.log('Nothing to delete No such file or directory' + actResultDir)
-  }
-  mkdir(actResultDir)
-  for (let i = 0; i < missionsXlsArray.length; i++) {
-    let xlsArrayMission = missionsXlsArray[i]
-    // find correct mission type in XLS
-    console.log('Checking MissionTitle: ' + xlsArrayMission['MissionTitle'])
-    let imageUrl = await getImageUrlFromMissionJson(xlsArrayMission['NFTJSONLink'])
-
-    mkdir(actResultDir + '/' + xlsArrayMission['MissionTitle'])
-    await getMissionNftImage(
-      imageUrl,
-      actResultDir + '/' + xlsArrayMission['MissionTitle'],
-      xlsArrayMission['NFTImageHash']
-    )
-    assertFilesEqual(
-      estResultDir +
-        '/' +
-        xlsArrayMission['MissionTitle'] +
-        '/' +
-        xlsArrayMission['NFTImageHash'] +
-        '.png',
-      actResultDir +
-        '/' +
-        xlsArrayMission['MissionTitle'] +
-        '/' +
-        xlsArrayMission['NFTImageHash'] +
-        '.png',
-      xlsArrayMission['MissionTitle']
-    )
-    // await sendMessage([xlsArrayMission['MissionTitle']] + 'NFT Image Checked: ')
-    // sleep(5000)
-    // await sendMessage(missionJson.image)
-    console.log('Checking finished: ' + xlsArrayMission['MissionTitle'] + '\n\n')
-  }
-}
-
 async function validateMissionsTest() {
   console.time('timer1')
 
@@ -455,7 +366,7 @@ async function validateMissionsTest() {
   parseXLSSrcDataToArray(MISSIONSTABLE)
   //    testing
   await validateMissionsJSONvsXLS(missionsJson, missionsArray, missionTypes)
-  await validateMissionsXLSNFTCards_J1(missionsArray)
+  await validateMissionsXLSNFTCards(missionsArray)
   console.timeEnd('timer1')
   console.log('\x1b[31m%s\x1b[37;40m', 'TOTAL ERRORS: ' + errors)
   //    console.trace();
