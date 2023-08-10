@@ -43,7 +43,7 @@ let missionsTableSeason1 =
   'Epic\tBattle\tPeacekeepers\tThe eternal battle continues and Reptilians and Greys are fighting over Trilium, send in your peacekeeper droids\t30,000\t1,000\t8\t28800\t85\t306000\t15\t54000\t4\tweeks\t2419200\tQmREjwMToyDHxx87C1CN9U1JEFLVCcnkpufFsgFQMTTbtm\tQmXqNWHFfPNzr5f2DJYmfwemmNxSgVeXMFbF7e27xjKtyd\t8.470588235\t254,118\thttps://alienworlds.mypinata.cloud/ipfs/QmREjwMToyDHxx87C1CN9U1JEFLVCcnkpufFsgFQMTTbtm\thttps://alienworlds.mypinata.cloud/ipfs/QmXqNWHFfPNzr5f2DJYmfwemmNxSgVeXMFbF7e27xjKtyd\n' +
   'Epic\tLiberation\tSpace Hub Opening\tAnother Liberation celebration event - Provide additional security to the ceremonial opening of the interplanetary space hub orbiting the planet\t60,000\t1,000\t8\t28800\t72\t259200\t47\t169200\t4\tweeks\t2419200\tQmP43h1pgZUNgqKaQdznfTdnvExsBu9CXZVcptisu6Z2QB\tQmafCjASJ7Dmyo9fvG3ztwA5h3rsEoqg8ptwDv1vTKicT4\t10\t600,000\thttps://alienworlds.mypinata.cloud/ipfs/QmP43h1pgZUNgqKaQdznfTdnvExsBu9CXZVcptisu6Z2QB\thttps://alienworlds.mypinata.cloud/ipfs/QmafCjASJ7Dmyo9fvG3ztwA5h3rsEoqg8ptwDv1vTKicT4\n' +
   'Legendary\tSupply\tSolar Flare\tThe Delta Solaris star has recorded unusual activity - A huge solar flare is expected to hit the planet - position a deflector shield to prevent damage to mining rigs\t75,000\t5,000\t12\t43200\t220\t792000\t24\t86400\t12\tweeks\t7257600\tQmSN6B2oDTXDMektfBsNGrFC2n9Kzby8hxBgUi8ZuRV6B6\tQmQh5z9yFghQqBodz8h3HFcLeS6MPKNcT8fkUQLZaQ8m75\t3.272727273\t245,455\thttps://alienworlds.mypinata.cloud/ipfs/QmSN6B2oDTXDMektfBsNGrFC2n9Kzby8hxBgUi8ZuRV6B6\thttps://alienworlds.mypinata.cloud/ipfs/QmQh5z9yFghQqBodz8h3HFcLeS6MPKNcT8fkUQLZaQ8m75\n' +
-  'Legendary\tCourier\tNew Start\tBrave adventurers are among the first to set up home on a newly discovered planet - Transport 10000 colonists to the new planet\t75,000\t5,000\t12\t43200\t210\t756000\t114\t410400\t12\tweeks\t7257600\tQme2VkoTSrZfSbjaJxmQLFKUHrpUuhoFQ4F92YAU9vq69t\tQmZC9j3JKrefWUanSBDCeqD235Ei31nTFAUcuFZUg1f9Pi\t3.428571429\t257,143\thttps://alienworlds.mypinata.cloud/ipfs/Qme2VkoTSrZfSbjaJxmQLFKUHrpUuhoFQ4F92YAU9vq69t\thttps://alienworlds.mypinata.cloud/ipfs/QmZC9j3JKrefWUanSBDCeqD235Ei31nTFAUcuFZUg1f9Pi'
+  'Legendary\tCourier\tNew Start\tBrave adventurers are among the first to set up home on a newly discovered planet - Transport 10000 colonists to the new planet\t75,000\t5,000\t12\t43200\t210\t756000\t114\t410400\t12\tweeks\t7257600\tQme2VkoTSrZfSbjaJxmQLFKUHrpUuhoFQ4F92YAU9vq69t\tQmZC9j3JKrefWUanSBDCeqD235Ei31nTFAUcuFZUg1f9Pi\t3.428571429\t257,143\thttps://alienworlds.mypinata.cloud/ipfs/Qme2VkoTSrZfSbjaJxmQLFKUHrpUuhoFQ4F92YAU9vq69t\thttps://alienworlds.mypinata.cloud/ipfs/QmZC9j3JKrefWUanSBDCeqD235Ei31nTFAUcuFZUg1f9Pi\n'
 
 let missionsTableSeason2 =
   '' +
@@ -57,7 +57,7 @@ let missionsTableSeason2 =
   'Legendary\tArtifact\tArtifact Discovery\tThe Galactic Orb of Time is one of the most ancient and precious objects in the Alien World Metaverse. It has been sighted near Planet Binance - Find the artifact and return with it\t75,000\t5,000\t12\t43200\t220\t792000\t24\t86400\t12\tweeks\t7257600\tQmTwYYcAGNZCcVwy7tbnzNsJJQW9bEXvYm3jLReJbQHkQM\tQmZJt3yRaUAt9Bbfk3d3vy1JDR4vmi2R4pisSDgjcYVCAV\t3.272727273\t245,455\n' +
   'Legendary\tLiberation\tLiberation Aid\tRogue Aliens have kidnapped diplomats on their way to debate the Planet Binance accords. The Aliens are holding them hostage. Send your elite special forces on a covert mission to free the hostages\t75,000\t5,000\t12\t43200\t210\t756000\t114\t410400\t12\tweeks\t7257600\tQmWeRuFctSRcXzZL254w24HgMinzgmk6ZkMHvqhn9o5Z4b\tQmd8bk7v4o1SzzGR8MS1JiQqWZK5swKkWFY9qPMr17tmSs\t3.428571429\t257,143'
 
-let missionsTable = missionsTableSeason1 + missionsTableSeason2
+let MISSIONSTABLE = missionsTableSeason1 + missionsTableSeason2
 
 let missionTypes = new Map([
   ['Explore', 1],
@@ -228,7 +228,7 @@ async function validateMissionsJSONvsXLS(missionsJson, missionsXlsArray, mission
 
 function assertFilesEqual(estFile, actFile, mission) {
   let data1 = fs.readFileSync(estFile).toString('hex')
-  let data2 = NaN
+  let data2
   try {
     data2 = fs.readFileSync(actFile).toString('hex')
   } catch (e) {
@@ -312,6 +312,49 @@ async function getMissionNftImage(baseUrl, dirName, filename) {
   fs.writeFileSync(dest, response._body)
   console.log('Downloaded file: ' + dest)
   return dest
+}
+
+async function validateMissionsXLSNFTCards_J1(missionsXlsArray) {
+  let actResultDir = actualResultNFTDirectory
+  let estResultDir = estimatedResultNFTDirectory
+  try {
+    fs.rmSync(path.join(__dirname, actResultDir), { recursive: true, force: true })
+  } catch (e) {
+    console.log('Nothing to delete. No such file or directory' + actResultDir)
+  }
+  mkdir(actResultDir)
+  for (let i = 0; i < missionsXlsArray.length; i++) {
+    let xlsArrayMission = missionsXlsArray[i]
+    // find correct mission type in XLS
+    console.log('Checking MissionTitle: ' + [xlsArrayMission['MissionTitle']])
+    let imageUrl = await getImageUrlFromMissionJson(xlsArrayMission['NFTJSONLink'])
+    mkdir(path.join(actResultDir, xlsArrayMission['MissionTitle']))
+    await getMissionNftImage(
+      imageUrl,
+      actResultDir + '/' + xlsArrayMission['MissionTitle'],
+      xlsArrayMission['NFTImageHash']
+    )
+    assertFilesEqual(
+      path.join(
+        __dirname,
+        estResultDir,
+        xlsArrayMission['MissionTitle'],
+        xlsArrayMission['NFTImageHash'] + '.png'
+      ),
+      path.join(
+        __dirname,
+        actResultDir,
+        xlsArrayMission['MissionTitle'],
+        xlsArrayMission['NFTImageHash'] + '.png'
+      ),
+      xlsArrayMission['MissionTitle']
+    )
+
+    // await sendMessage([xlsArrayMission['MissionTitle']] + 'NFT Image Checked: ')
+    // sleep(5000)
+    // await sendMessage(missionJson.image)
+    console.log('Checking finished for Mission: ' + [xlsArrayMission['MissionTitle']] + '\n\n')
+  }
 }
 
 async function validateMissionsXLSNFTCards_J(missionsXlsArray) {
@@ -409,10 +452,10 @@ async function validateMissionsTest() {
   let missionsJson = await getMissionsJson(missionsURL)
   console.table(missionTypes)
   //    preconditions
-  parseXLSSrcDataToArray(missionsTable)
+  parseXLSSrcDataToArray(MISSIONSTABLE)
   //    testing
   await validateMissionsJSONvsXLS(missionsJson, missionsArray, missionTypes)
-  await validateMissionsXLSNFTCards_M(missionsArray)
+  await validateMissionsXLSNFTCards_J1(missionsArray)
   console.timeEnd('timer1')
   console.log('\x1b[31m%s\x1b[37;40m', 'TOTAL ERRORS: ' + errors)
   //    console.trace();
