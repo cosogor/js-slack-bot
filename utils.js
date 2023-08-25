@@ -1,12 +1,20 @@
 const sleep = require('sleep-promise')
 
-async function main() {
+async function sleepp(microsecond) {
   console.log('begin')
-  await sleep(2000) // Ожидание 2 секунды
+  await sleep(microsecond) // Ожидание 2 секунды
   console.log('2 sec passed')
 }
-function sleeps(microsec) {
-  let e = new Date().getTime() + microsec
+
+function sleep(microsecond) {
+  let e = new Date().getTime() + microsecond
   while (new Date().getTime() <= e) {}
 }
-main()
+if (require.main === module) {
+  let result = main()
+}
+
+module.exports = {
+  sleepp,
+  sleep,
+}
